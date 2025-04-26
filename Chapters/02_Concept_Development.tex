@@ -8,9 +8,9 @@
 \section{Understanding crowd safety management}
 \label{sec:crowd-safety}
 
-In order to develop a solution that supports crowd safety professionals, it is imperative to understand how they operate, and what tools they currently have at their disposal. Together with my co-founders at Fluxense, we conducted interviews with many crowd safety professionals from various different organizations, including Event Safety (Smukfest), smash! bang! pow! (Syd for Solen), Roskilde Festival, and Live Nation (Copenhell, Heartland). Throughout this period, it became clearer that crowd safety management is very complex, and is almost as much a philosophy as it is a science. Music festivals and events vary greatly in size, participant demographics, venues, and budget. Equally varied are the crowd safety professionals themselves, which seemed to have varying levels of experience, as well as distinct approaches to their work.
+In order to develop a solution that supports crowd safety professionals, it is imperative to understand how they operate, and what tools they currently have at their disposal. Together with my co-founders at Fluxense, we conducted interviews with many crowd safety professionals from various different organizations, including Event Safety (Smukfest), smash! bang! pow! (Syd for Solen), Roskilde Festival, and Live Nation (Copenhell, Heartland) -- see appendix \ref{appendix:rf-meeting-notes} for meeting notes. Throughout this period, it became clearer that crowd safety management is very complex, and is almost as much a philosophy as it is a science. Music festivals and events vary greatly in size, participant demographics, venues, and budget. Equally varied are the crowd safety professionals themselves, who appeared to have varying levels of experience, as well as distinct approaches to their work.
 
-Most interestingly, the greatest discrepancy is seemingly between a focus on incident-prevention and incident-response, or "crowd safety vs. security", as according to Roskilde Festival's Director of Safety, Morten Therkildsen. A security-focused approach often involves less planning, as well as hiring third-party professionals to handle safety during the event. Safety-focused teams, on the other hand, spend most of the year leading up to their events meticulously planning initiatives to ensure the well-being and enjoyment of their guests. The distinction between these two protocols was apparent throughout Fluxense's collaborations with both Copenhell and Roskilde Festival. Live Nation had two full-time employees responsible for crowd safety at Copenhell, whereas Roskilde Festival had a team of 10+ full-time employees.
+Most interestingly, the greatest discrepancy was seemingly between a focus on incident-prevention and incident-response, or "crowd safety vs. security", as according to Roskilde Festival's Director of Safety, Morten Therkildsen. A security-focused approach often involves less planning, as well as hiring third-party professionals to handle safety during the event. Safety-focused teams, on the other hand, spend most of the year leading up to their events meticulously planning initiatives to ensure the well-being and enjoyment of their guests. The distinction between these two protocols was apparent throughout Fluxense's collaborations with both Copenhell and Roskilde Festival. At their 2024 events, Live Nation had two full-time employees responsible for crowd safety at Copenhell, whereas Roskilde Festival had a team of 10+ full-time employees.
 
 \subsection{Existing frameworks and workflows}
 
@@ -20,13 +20,23 @@ Most interestingly, the greatest discrepancy is seemingly between a focus on inc
 
 \section{Comparing technical solutions}
 
-\subsection{GPS}
+\subsection{Global Positioning System (GPS)}
+
+Using GPS to track the location of festival-goers is a common practice, and likely the easiest to implement technology in this comparison. This is typically achieved by providing guests with a mobile app that uses their smartphone's GPS to track their location. Of course, this requires the guests to opt in to location tracking, as well as there being a sufficient reason for doing so. In almost all cases, this is attempted by including a map of the festival in the app. This feature, however, still functions without location tracking, and therefore doesn't guarantee users will grant data access. Even before this obstacle is met, there is the question of whether festival-goers will actually use the app. A 2016 study by the Copenhagen Business School found that of the 60 thousand people who installed the festival application, 44 thousand opted-in to allowing anonymous tracking; yielding 38.678 unique users who were present inside the festival area \cite{rf_app}. This equates to slightly under 30\% of the total 130 thousand attendees. In a crowd safety context, this is a significant limitation, as the location data gathered is not representative of entire crowds.
+
+Beyond low adoption and potential privacy concerns, the technical limitations of GPS also hinder its utility for detailed crowd analysis. According to GPS.gov, GPS-enabled smartphones are typically accurate only to within a 4.9 m radius under open sky; however, their accuracy worsens near buildings, bridges, and trees \cite{gps}. While a 4.9-meter radius might seem acceptable for general location awareness on a festival map, this level of uncertainty significantly hinders the calculation of precise crowd density metrics. Furthermore, the degradation of accuracy near structures is particularly problematic in festival environments, which often feature large stages, tents, and temporary structures -- precisely where accurate monitoring is most needed. The effectiveness of GPS tracking is also contingent on factors outside the organizers' control, such as users keeping their phones charged and maintaining a stable mobile data connection.
+
+Compared to infrastructure-based monitoring systems (like cameras or dedicated sensors), GPS relies heavily on user cooperation and device functionality, making it less suitable for generating the consistent, high-resolution data needed for proactive crowd safety management and detailed post-event analysis. Therefore, while mobile app GPS data can offer some high-level insights into general attendee distribution, its inherent limitations in accuracy make it insufficient as a primary tool for gathering crowd dynamics measurements.
+
 \subsection{Bluetooth beams}
 \subsection{Other camera solutions}
 (competitor analysis)
 
 \section{Proposed solution}
+\label{sec:solution}
+
 \section{Feasibility of solution}
+\label{sec:feasibility}
 \subsection{Technical feasibility}
 \subsection{Legal feasibility}
 \subsection{Financial feasibility}

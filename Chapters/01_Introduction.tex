@@ -10,16 +10,14 @@ No matter the size of the event, crowd safety is a complex and multifaceted prob
 
 Despite the available tools and established frameworks, current crowd safety management practices face significant limitations. A recurring theme identified through discussions with industry professionals is a heavy reliance on the experience and intuition of the safety team. Key decisions regarding venue layout, capacity planning, resource allocation (e.g., staffing levels and placement), and risk assessment of concerts often depend heavily on estimations derived from past events and anecdotal knowledge rather than objective, quantitative data specific to the event's context. While experience is invaluable, this reliance introduces subjectivity and potential inconsistencies. Calculations conducted for aspects such as stage layout or entrance/exit dimensions are often based on estimations made by the safety team, albeit these usually are adjusted to cover worst-case scenarios. Even these adjustments, however, are still limited by the imagination and, crucially, the past experiences of the safety professionals. This ultimately suggests that younger or less experienced teams may lack the extensive reference points available to seasoned experts, potentially leading to false assumptions and miscalculations. Consequently, the efficacy of safety planning can appear correlated with the cumulative experience within the team.
 
-This complicated problem, has a seemingly simple and obvious solution: more objective data. At present, experiences and observations often go undocumented, as the safety team already has a plethora of responsibilities and tasks to attend to, not to mention the impossibility of having a full overview of the event at one given moment. This means that immediately following the event, or even after a given day, important observations and learnings from staff may be lost if not systematically documented. Moreover, most music festivals are massively scalable operations, going from a relatively small team of full-time employees and contractors throughout the planning stage, to a massive team of volunteers during the event. In the example of Roskilde Festival, this culminates in a team scaled from 100+ employees to 30,000+. This drastic staff scaling obviously applies to the crowd safety department as well.
-...
-These factors effectively hinder a comprehensive, data-driven understanding of crowd behavior.
+This complicated problem, has a seemingly simple and obvious solution: more objective data. At present, experiences and observations often go undocumented, as the safety team already has a plethora of responsibilities and tasks to attend to, not to mention the impossibility of having a full overview of the event at one given moment. Moreover, most music festivals are massively scalable operations, going from a relatively small team of full-time employees and contractors throughout the planning stage, to a massive team of volunteers during the event. In the example of Roskilde Festival, this culminates in a team scaled from over 100 employees to over 30 thousand. This drastic staff scaling certainly applies to the crowd safety department as well, potentially contributing to a lack of continuity and knowledge retention. This implies that immediately following the event, or even after a given day, important observations and learnings from staff may be lost if not systematically documented. These factors effectively hinder a comprehensive, data-driven understanding of crowd behavior.
 
 Furthermore, communicating the rationale behind safety decisions and requirements to other internal departments or external stakeholders can be challenging without clear, objective evidence. Provided that safety precautions are based on subjective assessments, conveying a need for specific resources or precautions can prove difficult. For instance, Roskilde Festival's safety team present a recurring challenge of convincing colleagues in the food and beverage department of concerns regarding the placement of food stalls or bars. Without the aid of clear evidence, Roskilde Festival's safety team occasionally find themselves dedicating valuable time and resources to justify their positions, at times even having to deviate from their core competencies to develop visual material to support their arguments.
 
 These scenarios and limitations highlight opportunities for significant improvement, namely through the development and integration of technology capable of providing objective, measurable insights into crowd dynamics at music festivals. This thesis seeks to explore these opportunities, guided by the following hypotheses:
 
 \begin{itemize}
-  \item Challenges in communicating crowd safety requirements and justifying decisions internally is often due to the subjective nature of current assessments, lacking objective, easily understandable evidence.
+  \item Challenges in communicating crowd safety requirements and justifying decisions internally are often due to the subjective nature of current assessments, lacking objective, easily understandable evidence.
 
   \item The precision and efficacy of safety planning are constrained by a reliance on experience-based estimations rather than quantitative, historical data on actual crowd dynamics.
 
@@ -34,27 +32,38 @@ After the summer, we stood at a crossroads. Our collaborations with the differen
 
 As the autumn progressed, we began securing new collaborations in our target industry, and our value proposition became clearer. One important thing had been lost in the process, however: our motivation. We had started Fluxense with the goal of improving crowd safety at music festivals, as it was a mission we shared a passion for. Our new focus on business intelligence made sense fiscally, but didn't evoke the same feeling of purpose. Fluxense ended up dissolving in the winter of 2024/25, as we couldn't see ourselves in the startup's new reality, and struggled to find a common vision.
 
-\section{Scope and mission statement}
+\section{Scope and purpose statement}
+\label{sec:mission-statement}
 
-This thesis continues approximately where Fluxense left off before the pivot. Rather than following the path laid out by the startup, and striving for a scalable business model, the purpose of this work is designing and developing a product that aids crowd safety managers. This project is specifically tailored to Roskilde Festival, as we shared a close collaboration throughout the entirety of 2024, and they expressed interest in continuing our collaboration through this leg of the project. Additionally, it is the largest music festival in Northern Europe, attracting over 130,000 guests each year \cite{rf}. With considerable prestige in the industry, as well ...
+This thesis continues approximately where Fluxense left off before the pivot. However, rather than following the path laid out by the startup and striving to develop a scalable commercial product, the purpose of this work is to create a tool that directly aids crowd safety managers at Roskilde Festival. This is partially due to our already close collaboration throughout the entirety of 2024, as well as their expressed interest in continuing our collaboration through this leg of the project. Additionally, it is the largest music festival in Northern Europe, attracting over 130 thousand guests each year \cite{rf}. With considerable prestige in the industry, as well as a passionate dedication to improving crowd safety, Roskilde Festival is an ideal partner for this project.
 
+It is important to note that the majority of crowd safety practices presented in this thesis are gathered through discussions with Roskilde Festival's safety team. While occasional references may be made to interactions or insights gained through collaborations with other festivals, these are included solely to illustrate the broader landscape and are not indicative of the project's applicability beyond Roskilde. These findings are also assumed limited to a Danish context, as all discussions with crowd safety professionals were with Danish festivals. Additionally, it was observed during these consultations that some prominent experts occasionally presented viewpoints that could be interpreted as subjective or opinionated. However, as the explicit goal of this project is to provide a functional tool for Roskilde Festival's specific operational environment, a critical evaluation of the objective validity of these statements falls outside the defined scope and is not deemed essential for achieving the project's objectives.
 
+In summary, the purpose statement of this project is as follows:
+\begin{quote}
+  \textit{To enhance Roskilde Festival's crowd safety management by developing an intuitive, data-driven platform that provides actionable insights into crowd dynamics (such as density, flow, and movement patterns), thereby improving planning, internal communication, and documentation for the safety team.}
+\end{quote}
 
-\section{Mission statement}
+\section{Objectives}
+\label{sec:objectives}
+
+Formalizing the hypotheses presented in section \ref{sec:problem-definition}, the business objectives of this project are as follows:
+\begin{enumerate}
+  \item \textbf{Improve internal communication}: offer clear, visual, objective evidence to help the safety team communicate requirements and justify decisions to other departments.
+  \item \textbf{Enhance safety planning}: provide quantitative, historical data on crowd dynamics to enable more accurate planning of layouts, capacities, resource allocation, and facility placement.
+  \item \textbf{Create reliable documentation}: Generate a persistent digital record of crowd dynamics for post-event analysis, debriefing, and knowledge retention.
+\end{enumerate}
+
 
 \section{Thesis structure}
 
-In their book, \textit{Design Science}, Hubka and Eder characterize the design process as intuitive, iterative, innovative, unpredictable and reflective \cite{hubka_eder}.
-
-Process needs to organized. (citation?)
-
-Blah blah, following product design methodology / frameworks. Many frameworks exist
+In their book, \textit{Design Science}, Hubka and Eder characterize the design process as intuitive, iterative, innovative, unpredictable and reflective \cite{hubka_eder}. While these aspects are inherent to design, tackling complex engineering challenges requires more than intuition and creativity alone. To manage the process effectively, ensure thoroughness, and facilitate clear understanding and traceability, a structured approach is beneficial \cite{eder}. Therefore, the process needs to be organized, drawing upon established product design methodologies and frameworks to guide this project. Many such frameworks exist, offering different levels of detail and focus. This section will explore the most relevant frameworks, and propose a design and development methodology for this project.
 
 \subsection{Comparison of frameworks}
 \vspace{2em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=14cm]{Pictures/Figures/cross.png}
+  \includegraphics[width=\textwidth]{Pictures/Figures/cross.png}
   \caption{Cross' four-stage model of the design process}
   \label{fig:cross}
 \end{figure}
@@ -76,13 +85,10 @@ In his book, \textit{The Lean Startup}, Eric Ries describes a simple, yet effect
 
 \subsection{Design and development methodology}
 
-Following the above exploration of frameworks for the design and development process, the following methodology is proposed for this project. The planning stage is divided into Ulrich and
-Eppinger's \textit{concept development} and \textit{system-level design} stages, while the development stage is based on Ries's \textit{Build-Measure-Learn} loop, as a stand-in for the \textit{detail design} and \textit{testing and refinement} stages.
+Building upon the exploration of frameworks conducted above, the following design methodology is proposed for this project. The design stage follows an engineering approach, guided by Ulrich and Eppinger's \textit{concept development} and \textit{system-level design} stages. Subsequently, the development stage is based on a more agile, entrepreneurial approach, as described by Ries. Standing in for the \textit{detail design} and \textit{testing and refinement} stages, Ries's \textit{Build-Measure-Learn} architecture is employed in order to facilitate rapid prototyping and iteration, albeit with a slight augmentation. The \textit{measure} and \textit{learn} stages are consolidated through periodic feedback sessions with Roskilde Festival, where implemented features are reviewed and emerging requirements are gathered. This eliminates the implied analysis between these two stages, as this project is developed in close collaboration with the target user, and its usage is not intended for a wider audience.
 
-In Chapter \ref{chap:concept-development}, \textbf{Concept Development}, the problem definition is revisited, and the requirements for the product are established. This is followed by a review of existing solutions, as well as a feasibility study to explore the potential of the proposed solution, as well as possible challenges.
+Chapter \ref{chap:concept-development}, \textbf{Concept Development}, ultimately selects and proposes a conceptual solution to the problem outlined in section \ref{sec:problem-definition}. As defined by Ulrich and Eppinger, a concept is "a description of the form, function, and features of a product and is usually accompanied by a set of specifications, an analysis of competitive products, and an economic justification of the project." \cite{ulrich_eppinger} This selection is initially preceded by a thorough inspection into the intricacies of crowd safety management, as well as a review of potential solutions and existing products. A novel solution is thereafter presented, outlining requirement specifications, as well as its technical, legal, and financial feasibility.
 
-Chapter \ref{chap:system-level-design} focuses on the \textbf{System-level Design}, where the product architecture is conceived, and the sub-systems are defined. This is followed by a detailed description of each sub-system, including the data collection, computer vision model, spatial mapping, metric extraction, as well as the user interface/frontend.
+Chapter \ref{chap:system-level-design} focuses on the \textbf{System-level Design}, including the definition of the product architecture, and a decomposition of the product into subsystems and components. The full workflow from data collection to the resulting user interface is presented, followed by a detailed description of each sub-system, including the data collection, computer vision model, spatial mapping, metric extraction, and the user interface/frontend.
 
-Finally, Chapter \ref{chap:results} presents the \textbf{Results} of development stage, including a showcase of the frontend, with an overview of decisions made along the way.
-
-a technical performance evaluation, as well as a business value analysis. The chapter concludes with a discussion of the results, and their implications for the future of the product.
+Finally, Chapter \ref{chap:results} presents the \textbf{Results} of the development stage, beginning with a showcase of the frontend, including an overview of the iterative feature selection conducted in accordance with the augmented \textit{Build-Measure-Learn} framework. This is followed by a technical performance evaluation, describing the accuracy of the solution. The chapter concludes by revisiting the business objectives outlined in section \ref{sec:objectives}, and evaluating the product's business value. This includes a summary of a workshop conducted with Roskilde Festival, where the final product was presented and tested by members of the safety team.
