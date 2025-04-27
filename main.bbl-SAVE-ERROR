@@ -1,0 +1,422 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{pearl_jam}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=b8921d3e6998121dfcf86c1b00b09e21}{%
+           family={Fricke},
+           familyi={F\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Rolling Stone}%
+      }
+      \strng{namehash}{b8921d3e6998121dfcf86c1b00b09e21}
+      \strng{fullhash}{b8921d3e6998121dfcf86c1b00b09e21}
+      \strng{fullhashraw}{b8921d3e6998121dfcf86c1b00b09e21}
+      \strng{bibnamehash}{b8921d3e6998121dfcf86c1b00b09e21}
+      \strng{authorbibnamehash}{b8921d3e6998121dfcf86c1b00b09e21}
+      \strng{authornamehash}{b8921d3e6998121dfcf86c1b00b09e21}
+      \strng{authorfullhash}{b8921d3e6998121dfcf86c1b00b09e21}
+      \strng{authorfullhashraw}{b8921d3e6998121dfcf86c1b00b09e21}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Internet Archive}
+      \field{month}{8}
+      \field{title}{Nine Dead At Pearl Jam Concert}
+      \field{year}{2000}
+      \verb{urlraw}
+      \verb https://web.archive.org/web/20180830050458/https://www.rollingstone.com/music/music-news/nine-dead-at-pearl-jam-concert-235167/
+      \endverb
+      \verb{url}
+      \verb https://web.archive.org/web/20180830050458/https://www.rollingstone.com/music/music-news/nine-dead-at-pearl-jam-concert-235167/
+      \endverb
+    \endentry
+    \entry{rf}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=cd610ebf4dba04aba37e28905ef2e930}{%
+           family={Association},
+           familyi={A\bibinitperiod},
+           given={YOUROPE\bibnamedelimb -\bibnamedelimb The\bibnamedelimb European\bibnamedelima Festival},
+           giveni={Y\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Internet Archive}%
+      }
+      \strng{namehash}{cd610ebf4dba04aba37e28905ef2e930}
+      \strng{fullhash}{cd610ebf4dba04aba37e28905ef2e930}
+      \strng{fullhashraw}{cd610ebf4dba04aba37e28905ef2e930}
+      \strng{bibnamehash}{cd610ebf4dba04aba37e28905ef2e930}
+      \strng{authorbibnamehash}{cd610ebf4dba04aba37e28905ef2e930}
+      \strng{authornamehash}{cd610ebf4dba04aba37e28905ef2e930}
+      \strng{authorfullhash}{cd610ebf4dba04aba37e28905ef2e930}
+      \strng{authorfullhashraw}{cd610ebf4dba04aba37e28905ef2e930}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Roskilde Festival}
+      \verb{urlraw}
+      \verb https://web.archive.org/web/20241212233325/https://yourope.org/member/roskilde-festival/
+      \endverb
+      \verb{url}
+      \verb https://web.archive.org/web/20241212233325/https://yourope.org/member/roskilde-festival/
+      \endverb
+    \endentry
+    \entry{hubka_eder}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=476d5cdd578aa8eef4f322a2fc8d1c7d}{%
+           family={Hubka},
+           familyi={H\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod}}}%
+        {{hash=f7c8928651cebeddc5e3cdce8d4adcf8}{%
+           family={Eder},
+           familyi={E\bibinitperiod},
+           given={Wolfgang\bibnamedelima Ernst},
+           giveni={W\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer London}%
+      }
+      \strng{namehash}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \strng{fullhash}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \strng{fullhashraw}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \strng{bibnamehash}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \strng{authorbibnamehash}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \strng{authornamehash}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \strng{authorfullhash}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \strng{authorfullhashraw}{79a02d0f104dcf92f1a23ed91d7d3afd}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Design Science: Introduction to the needs, scope and Organization of Engineering Design Knowledge}
+      \field{year}{1996}
+    \endentry
+    \entry{eder}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=37724bd19a962a44a7e857ae44a1e0f6}{%
+           family={Eder},
+           familyi={E\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{37724bd19a962a44a7e857ae44a1e0f6}
+      \strng{fullhash}{37724bd19a962a44a7e857ae44a1e0f6}
+      \strng{fullhashraw}{37724bd19a962a44a7e857ae44a1e0f6}
+      \strng{bibnamehash}{37724bd19a962a44a7e857ae44a1e0f6}
+      \strng{authorbibnamehash}{37724bd19a962a44a7e857ae44a1e0f6}
+      \strng{authornamehash}{37724bd19a962a44a7e857ae44a1e0f6}
+      \strng{authorfullhash}{37724bd19a962a44a7e857ae44a1e0f6}
+      \strng{authorfullhashraw}{37724bd19a962a44a7e857ae44a1e0f6}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the ASME Design Engineering Technical Conference}
+      \field{month}{01}
+      \field{title}{Why Systematic Design Engineering?}
+      \field{volume}{8}
+      \field{year}{2009}
+      \verb{doi}
+      \verb 10.1115/DETC2009-86067
+      \endverb
+    \endentry
+    \entry{cross}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=fcc9454942f4d3266ce0e3a61ae7b0c4}{%
+           family={Cross},
+           familyi={C\bibinitperiod},
+           given={Nigel},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {John Wiley}%
+        {Sons, Ltd}%
+      }
+      \strng{namehash}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \strng{fullhash}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \strng{fullhashraw}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \strng{bibnamehash}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \strng{authorbibnamehash}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \strng{authornamehash}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \strng{authorfullhash}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \strng{authorfullhashraw}{fcc9454942f4d3266ce0e3a61ae7b0c4}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Third Edition}
+      \field{title}{Engineering Design Methods: Strategies for Product Design}
+      \field{year}{2000}
+    \endentry
+    \entry{french}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=fed25a02676f9715a99f3820377bad23}{%
+           family={French},
+           familyi={F\bibinitperiod},
+           given={Michael\bibnamedelima Joseph},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag Berlin Heidelberg GmbH}%
+      }
+      \strng{namehash}{fed25a02676f9715a99f3820377bad23}
+      \strng{fullhash}{fed25a02676f9715a99f3820377bad23}
+      \strng{fullhashraw}{fed25a02676f9715a99f3820377bad23}
+      \strng{bibnamehash}{fed25a02676f9715a99f3820377bad23}
+      \strng{authorbibnamehash}{fed25a02676f9715a99f3820377bad23}
+      \strng{authornamehash}{fed25a02676f9715a99f3820377bad23}
+      \strng{authorfullhash}{fed25a02676f9715a99f3820377bad23}
+      \strng{authorfullhashraw}{fed25a02676f9715a99f3820377bad23}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second Edition}
+      \field{title}{Conceptual Design for Engineers}
+      \field{year}{1985}
+    \endentry
+    \entry{pahl_beitz}{book}{}{}
+      \name{author}{4}{}{%
+        {{hash=ebfef24ebb8e436dc150ff7760ed8d76}{%
+           family={Pahl},
+           familyi={P\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod}}}%
+        {{hash=502d001917782be467412a33cb557f57}{%
+           family={Feldhusen},
+           familyi={F\bibinitperiod},
+           given={Jörg},
+           giveni={J\bibinitperiod}}}%
+        {{hash=013ec710ca8a4acbf6b2cfc9ef514325}{%
+           family={Grote},
+           familyi={G\bibinitperiod},
+           given={Karl-Heinrich},
+           giveni={K\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=3ef03332e0b0fca2547a93058102d8a1}{%
+           family={Beitz},
+           familyi={B\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{56a2d4cb584abea19ecced826e5f6a8e}
+      \strng{fullhash}{d8ab3e32a0633e6ac23be5f91a51008e}
+      \strng{fullhashraw}{d8ab3e32a0633e6ac23be5f91a51008e}
+      \strng{bibnamehash}{56a2d4cb584abea19ecced826e5f6a8e}
+      \strng{authorbibnamehash}{56a2d4cb584abea19ecced826e5f6a8e}
+      \strng{authornamehash}{56a2d4cb584abea19ecced826e5f6a8e}
+      \strng{authorfullhash}{d8ab3e32a0633e6ac23be5f91a51008e}
+      \strng{authorfullhashraw}{d8ab3e32a0633e6ac23be5f91a51008e}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Third Edition}
+      \field{title}{Engineering Design: A Systematic Approach}
+      \field{year}{2007}
+    \endentry
+    \entry{ulrich_eppinger}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=826601011ccb1872012ba9b5e97c8ba3}{%
+           family={Ulrich},
+           familyi={U\bibinitperiod},
+           given={Karl\bibnamedelima T.},
+           giveni={K\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=c0f2f6e44f53b2fec1c8c42c14672304}{%
+           family={Eppinger},
+           familyi={E\bibinitperiod},
+           given={Steven\bibnamedelima D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=eba1a32cd5ce4217f7bc7cb397a03f0d}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Maria\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill Education}%
+      }
+      \strng{namehash}{dd2b62d39928d1271c7f72b0dededdb8}
+      \strng{fullhash}{dd2b62d39928d1271c7f72b0dededdb8}
+      \strng{fullhashraw}{dd2b62d39928d1271c7f72b0dededdb8}
+      \strng{bibnamehash}{dd2b62d39928d1271c7f72b0dededdb8}
+      \strng{authorbibnamehash}{dd2b62d39928d1271c7f72b0dededdb8}
+      \strng{authornamehash}{dd2b62d39928d1271c7f72b0dededdb8}
+      \strng{authorfullhash}{dd2b62d39928d1271c7f72b0dededdb8}
+      \strng{authorfullhashraw}{dd2b62d39928d1271c7f72b0dededdb8}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Seventh Edition}
+      \field{title}{Product Design and Development}
+      \field{year}{2020}
+    \endentry
+    \entry{scrum}{online}{}{}
+      \name{author}{2}{}{%
+        {{hash=ee6f08fcba839e09471a0bc69152b6a5}{%
+           family={Schwaber},
+           familyi={S\bibinitperiod},
+           given={Ken},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6e3f26f6f816a26c6ab36bc7a899bcde}{%
+           family={Sutherland},
+           familyi={S\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Scrumguides.org}%
+      }
+      \strng{namehash}{303ea1dc92fd8c772eac56316b2074ef}
+      \strng{fullhash}{303ea1dc92fd8c772eac56316b2074ef}
+      \strng{fullhashraw}{303ea1dc92fd8c772eac56316b2074ef}
+      \strng{bibnamehash}{303ea1dc92fd8c772eac56316b2074ef}
+      \strng{authorbibnamehash}{303ea1dc92fd8c772eac56316b2074ef}
+      \strng{authornamehash}{303ea1dc92fd8c772eac56316b2074ef}
+      \strng{authorfullhash}{303ea1dc92fd8c772eac56316b2074ef}
+      \strng{authorfullhashraw}{303ea1dc92fd8c772eac56316b2074ef}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Scrum Guide}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://scrumguides.org/scrum-guide.html
+      \endverb
+      \verb{url}
+      \verb https://scrumguides.org/scrum-guide.html
+      \endverb
+    \endentry
+    \entry{lean_startup}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=3ae634b261ee7bc5f734840abf4408e1}{%
+           family={Ries},
+           familyi={R\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Crown Business}%
+      }
+      \strng{namehash}{3ae634b261ee7bc5f734840abf4408e1}
+      \strng{fullhash}{3ae634b261ee7bc5f734840abf4408e1}
+      \strng{fullhashraw}{3ae634b261ee7bc5f734840abf4408e1}
+      \strng{bibnamehash}{3ae634b261ee7bc5f734840abf4408e1}
+      \strng{authorbibnamehash}{3ae634b261ee7bc5f734840abf4408e1}
+      \strng{authornamehash}{3ae634b261ee7bc5f734840abf4408e1}
+      \strng{authorfullhash}{3ae634b261ee7bc5f734840abf4408e1}
+      \strng{authorfullhashraw}{3ae634b261ee7bc5f734840abf4408e1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Lean Startup: How Toda's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses}
+      \field{year}{2011}
+    \endentry
+    \entry{rf_app}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=57de49f438517647112ab4295b3a3f4f}{%
+           family={Zimmerman},
+           familyi={Z\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=affe5a4d1df578368173a0eac143e503}{%
+           family={Madsen},
+           familyi={M\bibinitperiod},
+           given={René},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3c712c19084eea98b977873661a49b5f}{%
+           family={Eliassen},
+           familyi={E\bibinitperiod},
+           given={Henrik\bibnamedelima Hammer},
+           giveni={H\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=eeecba566cba97a24a8ea15953fd95eb}{%
+           family={Vatrapu},
+           familyi={V\bibinitperiod},
+           given={Ravi},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{7eba793db83275cc61596d70b88c4154}
+      \strng{fullhash}{513b80c9b685f979fa7a2ea4d7f9b74e}
+      \strng{fullhashraw}{513b80c9b685f979fa7a2ea4d7f9b74e}
+      \strng{bibnamehash}{7eba793db83275cc61596d70b88c4154}
+      \strng{authorbibnamehash}{7eba793db83275cc61596d70b88c4154}
+      \strng{authornamehash}{7eba793db83275cc61596d70b88c4154}
+      \strng{authorfullhash}{513b80c9b685f979fa7a2ea4d7f9b74e}
+      \strng{authorfullhashraw}{513b80c9b685f979fa7a2ea4d7f9b74e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the 7th 2016 International Conference on Social Media & Society}
+      \field{title}{Space vs. Place: Comparing Space-based Movements and Place-based Experiences at the Roskilde Festival 2015}
+      \field{volume}{11}
+      \field{year}{2016}
+      \field{pages}{1\bibrangedash 10}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/2930971.2930983
+      \endverb
+    \endentry
+    \entry{gps}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=96a68ae615f582c8eccd9a641f599852}{%
+           family={GPS.gov},
+           familyi={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Internet Archive}%
+      }
+      \strng{namehash}{96a68ae615f582c8eccd9a641f599852}
+      \strng{fullhash}{96a68ae615f582c8eccd9a641f599852}
+      \strng{fullhashraw}{96a68ae615f582c8eccd9a641f599852}
+      \strng{bibnamehash}{96a68ae615f582c8eccd9a641f599852}
+      \strng{authorbibnamehash}{96a68ae615f582c8eccd9a641f599852}
+      \strng{authornamehash}{96a68ae615f582c8eccd9a641f599852}
+      \strng{authorfullhash}{96a68ae615f582c8eccd9a641f599852}
+      \strng{authorfullhashraw}{96a68ae615f582c8eccd9a641f599852}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{GPS Accuracy}
+      \verb{urlraw}
+      \verb https://web.archive.org/web/20250421225547/https://www.gps.gov/systems/gps/performance/accuracy/
+      \endverb
+      \verb{url}
+      \verb https://web.archive.org/web/20250421225547/https://www.gps.gov/systems/gps/performance/accuracy/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
