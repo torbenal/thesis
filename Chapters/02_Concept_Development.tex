@@ -62,12 +62,16 @@ Finding examples of BLE beacons utilized at large outdoor events is more challen
 Ultimately, the most critical factor for crowd dynamics analysis is the technology's accuracy. A study conducted at a large exhibition in Japan evaluated the accuracy of trajectory estimation using Bluetooth beacons. They found that  in 68\% of instances, their positional estimates were accurate within a radius of 18 meters \cite{bt_japan}. While still useful for certain applications like indoor tracking or general zone classification, this level of accuracy is significantly less precise than typically achievable with GPS (section \ref{sec:gps}). This limitation, combined with the dependency on user adoption and implementation costs, makes Bluetooth beacons a less favorable option for gathering crowd dynamics data at large outdoor events.
 
 \subsection{Camera solutions}
-Camera-based solutions leverage existing CCTV systems in conjunction with computer vision algorithms to analyze crowd dynamics.
+Camera-based solutions leverage existing CCTV systems in conjunction with computer vision algorithms to analyze crowd dynamics. Utilizing video footage from these camera systems, novel advancements in machine learning and computer vision enable automated extraction of valuable metrics.
+
+A primary advantage of this approach compared to GPS (Section 2.3.1) and Bluetooth beacon (Section 2.3.2) systems is its independence from attendee cooperation. Unlike solutions requiring festival-goers to install an app, enable location services, carry a specific device, or keep their phones charged, camera-based analysis operates passively. It gathers data from anyone within the camera's field of view, potentially offering a more comprehensive and unbiased view of crowd behavior across monitored areas. This circumvents the significant limitations associated with low adoption rates and opt-in requirements inherent in user-device-dependent methods.
 
 (competitor analysis)
 
 \section{Proposed solution}
 \label{sec:solution}
+
+% also state which areas will be monitored and analyzed
 
 \section{Feasibility of solution}
 \label{sec:feasibility}
