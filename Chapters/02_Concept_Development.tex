@@ -1,20 +1,79 @@
 \chapter{Concept Development}
 \label{chap:concept-development}
 
-\section{Revisiting the problem definition}
-
-
-
 \section{Understanding crowd safety management}
 \label{sec:crowd-safety}
 
-In order to develop a solution that supports crowd safety professionals, it is imperative to understand how they operate, and what tools they currently have at their disposal. Together with my co-founders at Fluxense, we conducted interviews with many crowd safety professionals from various different organizations, including Event Safety (Smukfest), smash! bang! pow! (Syd for Solen), Roskilde Festival, and Live Nation (Copenhell, Heartland) -- see appendix \ref{appendix:rf-meeting-notes} for meeting notes. Throughout this period, it became clearer that crowd safety management is very complex, and is almost as much a philosophy as it is a science. Music festivals and events vary greatly in size, participant demographics, venues, and budget. Equally varied are the crowd safety professionals themselves, who appeared to have varying levels of experience, as well as distinct approaches to their work.
+In order to develop a solution that supports crowd safety professionals, it is imperative to understand how they operate, and what tools they currently have at their disposal. Together with my co-founders at Fluxense, we conducted interviews with many crowd safety professionals from various different organizations, including Event Safety (Smukfest), smash! bang! pow! (Syd for Solen), Roskilde Festival, and Live Nation (Copenhell, Heartland). Throughout this period, it became clearer that crowd safety management is very complex, and is almost as much a philosophy as it is a science. Music festivals and events vary greatly in size, participant demographics, venues, and budget. Equally varied are the crowd safety professionals themselves, who appeared to have varying levels of experience, as well as distinct approaches to their work.
 
-Most interestingly, the greatest discrepancy was seemingly between a focus on incident-prevention and incident-response, or "crowd safety vs. security", as according to Roskilde Festival's Director of Safety, Morten Therkildsen. A security-focused approach often involves less planning, as well as hiring third-party professionals to handle safety during the event. Safety-focused teams, on the other hand, spend most of the year leading up to their events meticulously planning initiatives to ensure the well-being and enjoyment of their guests. The distinction between these two protocols was apparent throughout Fluxense's collaborations with both Copenhell and Roskilde Festival. At their 2024 events, Live Nation had two full-time employees responsible for crowd safety at Copenhell, whereas Roskilde Festival had a team of 10+ full-time employees.
+Most interestingly, the greatest discrepancy was seemingly between a focus on incident-prevention and incident-response, or "crowd safety vs. security", as according to Roskilde Festival's Director of Safety, Morten Therkildsen (Appendix \ref{appendix:rf-meeting-notes}). A security-focused approach often involves less planning, as well as hiring third-party professionals to handle safety during the event. Safety-focused teams, on the other hand, spend most of the year leading up to their events meticulously planning initiatives to ensure the well-being and enjoyment of their guests. The distinction between these two protocols was apparent throughout Fluxense's collaborations with both Copenhell and Roskilde Festival. At their 2024 events, Live Nation had two full-time employees responsible for crowd safety at Copenhell, whereas Roskilde Festival had a team of 10+ full-time employees. Additionally, our collaboration with Copenhell was focused on real-time analysis, while Roskilde Festival was much more interested in post-event analysis.
+
+This difference in approach is reflective of Denmark's regulatory landscape regarding crowd safety. While official documentation exists, such as the "Vejledning om sikkerhed ved udendørs musikarrangementer o.lign." published by the Ministry of Justice and Ministry of Culture, these serve as guidelines rather than enforceable legislation specifically covering the planning phase of crowd safety management. The document itself emphasizes its role as a tool and catalog of ideas for organizers, who ultimately retain the responsibility for risk-assesment and implementation of appropriate measures based on their specific event \cite{jm_safety}. Furthermore, the Danish Police have published supplementary guidance, describing the requirements for receiving a permit. While the police require organizers of large events to submit a safety plan as a condition for obtaining the necessary event permit, this is solely focused on incident-response \cite{police_safety}. Thus, although numerous legal requirements touch upon event safety, there isn't distinct legislation dictating the specific process and minimum standards for proactive crowd safety planning. The legislation highlighted in these guidelines focuses on structural safety, emergency response, and police involvement, leaving the interpretation and extent of proactive safety planning largely to the individual organizers. This contributes to the observed discrepancies in how crowd safety management is implemented across different Danish festivals, as they interpret the available guidelines and integrate them into their operational workflows individually.
+
+As the scope of this thesis is to develop a solution for Roskilde Festival explicitly, their distinct interpretation of crowd safety will be the exclusive focus in requirement gathering. The following sections will outline the current frameworks and workflows used by Roskilde Festival, as well as the key metrics they calculate and monitor.
+
 
 \subsection{Existing frameworks and workflows}
 
+Roskilde Festival's approach to crowd safety management is built upon internationally recognized frameworks, prioritizing proactive planning and analysis. Roskilde Festival's Director of Safety, Morten Therkildsen, considers the United Kingdom to be on the forefront of crowd safety management, and the festival follows several UK-based frameworks to inform their practices. These include \textit{The Purple Guide} \cite{purple_guide}, as well as the methodologies of Professor G. Keith Still, whose work highlighted in \textit{Applied Crowd Science} has been adopted for mandatory training for public event commanders by the UK College of Policing since 2018 \cite{keith_still}. Roskilde Festival also references the \textit{Event Safety Guide} from the US-based Event Safety Alliance (ESA) \cite{es_guide}. Roskilde's practical implementation of these frameworks is apparent in many of their workflows, several of which are outlined below.
+
+An integral workflow involves conducting artist- and stage-specific risk assessments for every concert. The reasoning is to anticipate potential hazards based on the unique characteristics of each artist and their expected audience. This involves a detailed "band analysis" (Appendix \ref{appendix:rf-meeting-notes}) considering factors like genre, typical crowd behavior, demographics, together with Still's RAMP analysis (evaluating routes, area, and movement specific to the stage, as well as the people/audience specific to the artist) \cite{ramp}. Subsequently, concerts are categorized using a system reflecting risk based on the RAMP analysis (red/yellow/green), and expected attendance relative to stage capacity (A: <25\%, B: 25\%-75\%, C: 75\%-100\%, C+: 100\%+). This assessment enables the safety team to tailor resources -- such as staffing levels, barrier placement, and egress/flow management -- to the predicted risk profile of each concert.
+
+Understanding and managing how attendees move is addressed through flow analysis. Roskilde Festival's safety team analyze ingress/egress patterns and rates, particularly at entrances/exits, aggregating data across various time intervals (1, 15, 60 minutes). The objective is to prevent bottlenecks and ensure that the physical infrastructure can safely accommodate peak movements. This quantitative understanding of flow is crucial for accurately calculating required pathway widths, optimizing crowd control measures like queue management, and deploying staff to guide attendees when necessary. Additionally, crowd density analysis, using metrics like Levels of Service (LoS) inspired by John J. Fruin \cite{fruin}, is employed to monitor crowd concentration. This is especially conducted in areas with expected high density (e.g., front-of-stage) or potentially congested zones (e.g., queues around vendors). Its purpose is to prevent the high densities that pose a direct risk of crowd crushes, and to evaluate the effectiveness of the site layout in distributing the crowd effectively.
+
 \subsection{Key metrics}
+\label{sec:key-metrics}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/Figures/Los/A.png}
+    \caption*{\textbf{A} (0-1 person/m\textsuperscript{2}). Head, shoulders, chest, and feet are visible.}
+  \end{subfigure}%
+  \hspace{0.06\textwidth}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/Figures/Los/B.png}
+    \caption*{\textbf{B} (1-2 people/m\textsuperscript{2}). Head, shoulders, chest, and feet are visible.}
+  \end{subfigure}
+
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/Figures/Los/C.png}
+    \caption*{\textbf{C} (2-3 people/m\textsuperscript{2}). Head, shoulders, and chest are visible.}
+  \end{subfigure}%
+  \hspace{0.06\textwidth}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/Figures/Los/D.png}
+    \caption*{\textbf{D} (3-4 people/m\textsuperscript{2}). Head, shoulders, and chest are visible.}
+  \end{subfigure}
+
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/Figures/Los/E.png}
+    \caption*{\textbf{E} (4-5 people/m\textsuperscript{2}). Head and shoulders are visible.}
+  \end{subfigure}%
+  \hspace{0.06\textwidth}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/Figures/Los/F.png}
+    \caption*{\textbf{F} (5+ people/m\textsuperscript{2}). Only heads are visible.}
+  \end{subfigure}
+  \caption{Roskilde Festival's internal implementation of Levels of Service (LoS), using a scale of A-F. The images serve as visual examples of the different LoS levels, used to estimate crowd density on-site or through video footage. Roskilde relies on visual cues, namely the visibility of heads, shoulders, and feet, to assess crowd density.}
+\end{figure}
+
+Summarizing the workflows outlined above, the key metrics that Roskilde Festival's safety team monitors include:
+
+% TODO
+
+\subsection{Revisiting the problem definition}
+
+% While experience guides the assessment, having objective density data allows for precise validation of planned capacities against real-world conditions. This documentation becomes invaluable for post-event reviews and for clearly communicating the rationale behind safety-driven layout recommendations to other departments, addressing a noted challenge of justifying needs based purely on subjective assessment. This analytical need is supported by the frameworks discussing density thresholds and risk (Still Chapters 3, 9; ESA Guide Section 8.4.1.1).
+
+% While Roskilde Festival employs these thorough, framework-informed workflows, the reliance on manual observation, experience-based estimation, and the challenge of systematically capturing and communicating quantitative data highlight opportunities for tools that can provide persistent, objective, and easily visualized insights into crowd dynamics, thereby potentially enhancing planning accuracy, internal communication, and long-term knowledge retention within the safety team.
+% It may seem that Roskilde Festival's approach is already data-driven, however calculations are based on intuition and experience, rather than objective data. 
 
 
 
@@ -25,7 +84,7 @@ Most interestingly, the greatest discrepancy was seemingly between a focus on in
 
 Using GPS to track the location of festival-goers is a common practice, and likely the easiest to implement technology in this comparison. This is typically achieved by providing guests with a mobile app that uses their smartphone's GPS to track their location. Of course, this requires the guests to opt in to location tracking, as well as there being a sufficient reason for doing so. In almost all cases, this is attempted by including a map of the festival in the app, as visible in Figure \ref{fig:festival_apps}. This feature, however, still functions without location tracking, and therefore doesn't guarantee users will grant data access. Even before this obstacle is met, there is the question of whether festival-goers will actually use the app. A study on Roskilde Festival 2015 by the Copenhagen Business School  found that of the 60 thousand people who installed the festival application, 44 thousand opted-in to allowing anonymous tracking; yielding 38.678 unique users who were present inside the festival area \cite{rf_app}. This equates to slightly under 30\% of the total 130 thousand attendees. In a crowd safety context, this is a significant limitation, as the location data gathered is not representative of entire crowds.
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{subfigure}{.3\textwidth}
     \centering
@@ -59,7 +118,7 @@ Another potential solution for gathering crowd dynamics data involves utilizing 
 
 Finding examples of BLE beacons utilized at large outdoor events is more challenging, as the technology has its own set of drawbacks. Similar to GPS-based mobile apps, the effectiveness of Bluetooth beacon systems is significantly contingent on user cooperation. Beacons can be implemented either as dedicated physical devices or embedded within smartphone applications. The latter is simpler and cheaper, however motiving users to install an app is challenging, as discussed in section \ref{sec:gps}. The former approach has challenges of its own, as requiring event participants to carry a dedicated device demands a value proposition of its own, not to mention the overhead costs involved in developing, deploying, and maintaining the system. Given that beacon signals have an effective range of 30 meters without obstructions, a considerable number of receivers are necessary to ensure adequate coverage \cite{bt_beacon}.
 
-Ultimately, the most critical factor for crowd dynamics analysis is the technology's accuracy. A study conducted at a large exhibition in Japan evaluated the accuracy of trajectory estimation using Bluetooth beacons. They found that  in 68\% of instances, their positional estimates were accurate within a radius of 18 meters \cite{bt_japan}. While still useful for certain applications like indoor tracking or general zone classification, this level of accuracy is significantly less precise than typically achievable with GPS (section \ref{sec:gps}). This limitation, combined with the dependency on user adoption and implementation costs, makes Bluetooth beacons a less favorable option for gathering crowd dynamics data at large outdoor events.
+Ultimately, the most critical factor for crowd dynamics analysis is the technology's accuracy. A study conducted at a large exhibition in Japan evaluated the accuracy of trajectory estimation using Bluetooth beacons. They found that  in 68\% of instances, their positional estimates were accurate within a radius of 18 meters \cite{bt_japan}. While still useful for certain applications like indoor tracking or general zone classification, this level of accuracy is significantly less precise than typically achievable with GPS (Section \ref{sec:gps}). This limitation, combined with the dependency on user adoption and implementation costs, makes Bluetooth beacons a less favorable option for gathering crowd dynamics data at large outdoor events.
 
 \subsection{Camera solutions}
 Camera-based solutions leverage existing CCTV systems in conjunction with computer vision algorithms to analyze crowd dynamics. Utilizing video footage from these camera systems, novel advancements in machine learning and computer vision enable automated extraction of valuable metrics.
