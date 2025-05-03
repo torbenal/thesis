@@ -5,6 +5,8 @@
 # LaTeX
 *.aux
 *.bbl
+*.bbl-SAVE-ERROR
+*.bcf
 *.blg
 *.idx
 *.ind
@@ -23,3 +25,4 @@
 *.log
 *.fdb_latexmk
 *.synctex.gz
+*.run.xml

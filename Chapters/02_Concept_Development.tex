@@ -19,10 +19,7 @@ Roskilde Festival's approach to crowd safety management is built upon internatio
 
 An integral workflow involves conducting artist- and stage-specific risk assessments for every concert. The reasoning is to anticipate potential hazards based on the unique characteristics of each artist and their expected audience. This involves a detailed "band analysis" (Appendix \ref{appendix:rf-meeting-notes}) considering factors like genre, typical crowd behavior, demographics, together with Still's RAMP analysis (evaluating routes, area, and movement specific to the stage, as well as the people/audience specific to the artist) \cite{ramp}. Subsequently, concerts are categorized using a system reflecting risk based on the RAMP analysis (red/yellow/green), and expected attendance relative to stage capacity (A: <25\%, B: 25\%-75\%, C: 75\%-100\%, C+: 100\%+). This assessment enables the safety team to tailor resources -- such as staffing levels, barrier placement, and egress/flow management -- to the predicted risk profile of each concert.
 
-Understanding and managing how attendees move is addressed through flow analysis. Roskilde Festival's safety team analyze ingress/egress patterns and rates, particularly at entrances/exits, aggregating data across various time intervals (1, 15, 60 minutes). The objective is to prevent bottlenecks and ensure that the physical infrastructure can safely accommodate peak movements. This quantitative understanding of flow is crucial for accurately calculating required pathway widths, optimizing crowd control measures like queue management, and deploying staff to guide attendees when necessary. Additionally, crowd density analysis, using metrics like Levels of Service (LoS) inspired by John J. Fruin \cite{fruin}, is employed to monitor crowd concentration. This is especially conducted in areas with expected high density (e.g., front-of-stage) or potentially congested zones (e.g., queues around vendors). Its purpose is to prevent the high densities that pose a direct risk of crowd crushes, and to evaluate the effectiveness of the site layout in distributing the crowd effectively.
-
-\subsection{Key metrics}
-\label{sec:key-metrics}
+Understanding and managing how attendees move is addressed through flow analysis. Roskilde Festival's safety team analyze ingress/egress patterns and rates, particularly at entrances/exits, aggregating data across various time intervals (1, 15, 60 minutes). The objective is to prevent bottlenecks and ensure that the physical infrastructure can safely accommodate peak movements. This quantitative understanding of flow is crucial for accurately calculating required pathway widths, optimizing crowd control measures like queue management, and deploying staff to guide attendees when necessary. Additionally, crowd density analysis, using metrics like Levels of Service (LoS) inspired by John J. Fruin \cite{fruin}, is employed to monitor crowd concentration (see Roskilde Festival's implementation in Figure \ref{fig:fruin}). This is especially conducted in areas with expected high density (e.g., front-of-stage) or potentially congested zones (e.g., queues around vendors). Its purpose is to prevent the high densities that pose a direct risk of crowd crushes, and to evaluate the effectiveness of the site layout in distributing the crowd effectively.
 
 \begin{figure}
   \centering
@@ -62,20 +59,30 @@ Understanding and managing how attendees move is addressed through flow analysis
     \caption*{\textbf{F} (5+ people/m\textsuperscript{2}). Only heads are visible.}
   \end{subfigure}
   \caption{Roskilde Festival's internal implementation of Levels of Service (LoS), using a scale of A-F. The images serve as visual examples of the different LoS levels, used to estimate crowd density on-site or through video footage. Roskilde relies on visual cues, namely the visibility of heads, shoulders, and feet, to assess crowd density.}
+  \label{fig:fruin}
 \end{figure}
 
-Summarizing the workflows outlined above, the key metrics that Roskilde Festival's safety team monitors include:
+\subsection{Key metrics}
+\label{sec:key-metrics}
 
-% TODO
+
+
+Given the workflows outlined above, we can identify the following key metrics that Roskilde Festival relies on to assess crowd safety:
+
+\begin{itemize}
+  \item \textbf{Ingress/Egress Counts}: The number of people entering (ingress) or leaving (egress) a monitored area.
+  \item \textbf{Flow Rates}: The rate at which people enter or exit an area over specific time periods (e.g., per minute, per hour), including net change and peak rates.
+  \item \textbf{Cumulative Counts}: A running total showing the net number of individuals within the monitored area over time.
+  \item \textbf{Crowd Density}: The concentration of people within an area, typically expressed as people per square meter (people/m\textsuperscript{2}).
+  \item \textbf{Movement Patterns}: The general paths, directions, origins, and destinations of people moving within the monitored space.
+\end{itemize}
 
 \subsection{Revisiting the problem definition}
+As outlined in the previous sections, Roskilde Festival currently utilizes established frameworks and workflows for proactive crowd safety management. Their approach demonstrates a commitment to data-driven planning and analysis. However, a significant challenge lies not in the \textit{analysis} of data, but in the \textit{acquisition} of reliable and objective data. While the festival's safety team already has the tools necessary to interpret and act upon key metrics, the current means of gathering this information often rely on manual, time-consuming, or subjective methods.
 
-% While experience guides the assessment, having objective density data allows for precise validation of planned capacities against real-world conditions. This documentation becomes invaluable for post-event reviews and for clearly communicating the rationale behind safety-driven layout recommendations to other departments, addressing a noted challenge of justifying needs based purely on subjective assessment. This analytical need is supported by the frameworks discussing density thresholds and risk (Still Chapters 3, 9; ESA Guide Section 8.4.1.1).
+A prime example is the assessment of ingress/egress flow rates. As described by Mads Therkildsen, Safety Lead at Roskilde Festival, a common practice involves manually counting individuals passing through an entrance for a short period, such as one or two minutes, and then extrapolating this count to estimate hourly flow (Appendix \ref{appendix:rf-feb-25}). While practical, this method provides only partial data and is likely inaccurate, especially during rapidly changing conditions. Similarly, crowd density is currently gauged primarily through subjective visual assessment using an internal Levels of Service (LoS) scale, as illustrated in Figure \ref{fig:fruin}. The current process relies on observers estimating density based on visual cues like the visibility of heads, shoulders, and feet. Consequently, the true density value across different areas and times remains largely unknown.
 
-% While Roskilde Festival employs these thorough, framework-informed workflows, the reliance on manual observation, experience-based estimation, and the challenge of systematically capturing and communicating quantitative data highlight opportunities for tools that can provide persistent, objective, and easily visualized insights into crowd dynamics, thereby potentially enhancing planning accuracy, internal communication, and long-term knowledge retention within the safety team.
-% It may seem that Roskilde Festival's approach is already data-driven, however calculations are based on intuition and experience, rather than objective data. 
-
-
+These examples highlight the core limitation: the absence of an efficient system to autonomously and objectively gather quantitative data on key crowd metrics. As Roskilde Festival already employs a data-driven approach to crowd safety management, such a system would integrate directly into their existing workflows. The following sections explore potential technical solutions to solve this challenge, eventually proposing a product.
 
 \section{Comparing technical solutions}
 
@@ -109,7 +116,7 @@ Using GPS to track the location of festival-goers is a common practice, and like
 \end{figure}
 
 
-Beyond low adoption and potential privacy concerns, the technical limitations of GPS also hinder its utility for detailed crowd analysis. According to GPS.gov, GPS-enabled smartphones are typically accurate only to within a 4.9 m radius under open sky; however, their accuracy worsens near buildings, bridges, and trees \cite{gps}. While a 4.9-meter radius might seem acceptable for general location awareness on a festival map, this level of uncertainty significantly hinders the calculation of precise crowd dynamics metrics. Furthermore, the degradation of accuracy near structures is particularly problematic in festival environments, which often feature large stages, tents, and temporary structures -- precisely where accurate monitoring is most needed. The effectiveness of GPS tracking is also contingent on factors outside the organizers' control, such as users keeping their phones charged and maintaining a stable mobile data connection.
+Beyond low adoption and potential privacy concerns, the technical limitations of GPS also hinder its utility for detailed crowd analysis. According to GPS.gov, GPS-enabled smartphones are typically accurate only to within a 4.9-meter radius under open sky; however, their accuracy worsens near buildings, bridges, and trees \cite{gps}. While a 4.9-meter radius might seem acceptable for general location awareness on a festival map, this level of uncertainty significantly hinders the calculation of precise crowd dynamics metrics. Furthermore, the degradation of accuracy near structures is particularly problematic in festival environments, which often feature large stages, tents, and temporary structures -- precisely where accurate monitoring is most needed. The effectiveness of GPS tracking is also contingent on factors outside the organizers' control, such as users keeping their phones charged and maintaining a stable mobile data connection.
 
 Compared to infrastructure-based monitoring systems (like cameras or dedicated sensors), GPS relies heavily on user cooperation and device functionality, making it less suitable for generating the consistent, high-resolution data needed for proactive crowd safety management and detailed post-event analysis. Therefore, while mobile app GPS data can offer some high-level insights into general attendee distribution, its inherent limitations in accuracy make it insufficient as a primary tool for gathering crowd dynamics measurements.
 

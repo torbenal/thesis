@@ -6,7 +6,7 @@
 \begin{figure}
   \centering
   \includegraphics[width=0.9\textwidth]{Pictures/Figures/system_flowchart.png}
-  \caption{Flowchart visualizing the system architecture.}
+  \caption{Flowchart visualizing the system architecture. \textit{Images have been intentionally blurred to protect privacy}.}
 \end{figure}
 
 
@@ -133,6 +133,12 @@ A comparison of processing efficiency revealed that CrowdHat processes frames at
 
 While pre-training on large, diverse datasets like COCO provides the YOLOv8 model with a robust general object detection capability, achieving optimal performance necessitates fine-tuning on a custom-annotated dataset. The rationale for this extends beyond simply adapting to the general festival environment; the goal is to develop highly specialized models optimized for the precise conditions and appearance characteristics encountered by each camera at each specific deployment position. It is hypothesized that such hyper-specialization yields superior detection accuracy compared to a more generalized model.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Pictures/Figures/annotation_flowchart.png}
+  \caption{Flowchart visualizing the annotation process. \textit{Images have been intentionally blurred to protect privacy}.}
+\end{figure}
+
 % TODO: add accuracy comparison of generalized crowdhat vs specialized yolo
 
 The annotation process utilized Label Studio, an open-source data labeling tool \cite{label_studio}. A self-hosted instance was employed to ensure data privacy and control, preventing the need to upload potentially sensitive video material captured on-site to third-party services.
@@ -145,6 +151,8 @@ Specific annotation guidelines were established to ensure consistency:
   \item In cases of occlusion, where one head partially blocks the view of another, overlapping bounding boxes were permitted.
   \item If individuals were distant (e.g., in the far background) or within extremely dense parts of the crowd, making distinct heads difficult to discern, bounding boxes were only placed where a head could be clearly distinguished. Ambiguous cases were omitted to maintain label quality.
 \end{itemize}
+
+
 
 To minimize time spent annotating, an iterative approach was used. After an initial batch of frames was annotated, a YOLOv8 model was trained on this preliminary data. This temporary model was then integrated with Label Studio to pre-annotate subsequent frames by suggesting bounding boxes based on its predictions. This workflow is commonly referred to as human-in-the-loop, and significantly expedited annotation time, as the task increasingly involved refining or validating the model's suggestions rather than manually creating annotations. Additionally, this methodology offered a visual indicator of model performance, as the diminishing need for manual adjustments indicated that the model was becoming more robust and that enough data had been annotated for final training.
 
