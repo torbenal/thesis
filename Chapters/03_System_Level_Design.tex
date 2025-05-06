@@ -158,29 +158,28 @@ To minimize time spent annotating, an iterative approach was used. After an init
 
 The annotation results are summarized in Table \ref{tab:annotation_stats}.
 
-% TODO
 \begin{table}
   \centering
   \label{tab:annotation_stats}
-  \renewcommand{\arraystretch}{1.1}
+  \renewcommand{\arraystretch}{1.15}
   \begin{tabularx}{0.9\textwidth}{@{} ll >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
     \toprule
-    Stage                                 & Camera                  & Images                  & Bounding Boxes \\
+    Stage                                 & Camera       & Images        & Bounding Boxes \\
     \midrule
-    \multirow{4}{*}{Eos}                  & CAM1                    & [Number]                & [Number]       \\
-                                          & CAM2                    & [Number]                & [Number]       \\
-                                          & CAM3                    & [Number]                & [Number]       \\
-                                          & CAM4                    & [Number]                & [Number]       \\
+    \multirow{4}{*}{Eos}                  & CAM1         & N/A           & N/A            \\
+                                          & CAM2         & 46            & 5297           \\
+                                          & CAM3         & N/A           & N/A            \\
+                                          & CAM4         & 18            & 1933           \\
     \midrule
-    \multirow{4}{*}{Arena}                & CAM1                    & [Number]                & [Number]       \\
-                                          & CAM2                    & [Number]                & [Number]       \\
-                                          & CAM3                    & [Number]                & [Number]       \\
-                                          & CAM4                    & [Number]                & [Number]       \\
+    \multirow{4}{*}{Arena}                & CAM1         & 22            & 2480           \\
+                                          & CAM2         & 32            & 1269           \\
+                                          & CAM3         & 26            & 2075           \\
+                                          & CAM4         & N/A           & N/A            \\
     \midrule \midrule
-    \multicolumn{2}{@{}l}{\textbf{Total}} & \textbf{[Total Number]} & \textbf{[Total Number]}                  \\
+    \multicolumn{2}{@{}l}{\textbf{Total}} & \textbf{144} & \textbf{8774}                  \\
     \bottomrule
   \end{tabularx}
-  \caption{Annotation statistics per camera deployment}
+  \caption{Annotation statistics per camera deployment. Note that \textit{CAM1} and \textit{CAM3} at Eos stage were not annotated, as they were redundant to \textit{CAM2} and \textit{CAM4} respectively. \textit{CAM4} at Arena stage was also not annotated due to time constraints.}
 
   \renewcommand{\arraystretch}{1.0}
 \end{table}
@@ -238,7 +237,7 @@ Following the spatial mapping process (Section \ref{sec:spatial_mapping}), which
 
 To measure the flow of people into and out of specific areas, lines are drawn across each camera view. These lines correspond to the entrances/exits covered by the cameras (as detailed in Section \ref{sec:data_collection}, Figures \ref{fig:eos_cameras} and \ref{fig:arena_cameras}). The system follows the trajectory of each tracked individual (identified by a unique ID from the tracking algorithm, Section \ref{sec:cv_model}). When a trajectory crosses the virtual line, the system registers it as either an ingress or egress event based on the direction of crossing.
 
-These individual crossing events are then aggregated over specific time intervals. Intervals of 1 minute, 15 minutes, and 1 hour were identified as most useful by Roskilde Festival (Appendix \ref{appendix:rf-meeting-notes}). This aggregation allows the calculation of the ingress/egress flow rate, representing the number of people entering/exiting the area per time unit. The net flow rate is calculated as the difference between ingress and egress flow rates, indicating the rate of change in the number of people within the area.
+These individual crossing events are then aggregated over specific time intervals. Intervals of 1 minute, 15 minutes, and 1 hour were identified as most useful by Roskilde Festival (Appendix \ref{appendix:rf-feb-25}). This aggregation allows the calculation of the ingress/egress flow rate, representing the number of people entering/exiting the area per time unit. The net flow rate is calculated as the difference between ingress and egress flow rates, indicating the rate of change in the number of people within the area.
 
 Furthermore, a cumulative count provides a running total of the net number of people within the monitored area over time, calculated by aggregating ingress/egress over time. This cumulative count is particularly useful for understanding the overall occupancy of the area. These flow metrics can be calculated for individual entrances or cameras, or they can be aggregated to provide a total flow for a larger area such as an entire stage. The system also identifies and records maximum ingress and egress flow rates observed during specific periods, like during a concert. This data is essential for understanding peak loads, capacity planning, and validating entrance width calculations.
 

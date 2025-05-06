@@ -1,7 +1,15 @@
 \chapter{Introduction}
 
 \section{Background and motivation}
-On June 30th 2000, nine young men lost their lies in a crowd crush during a Pearl Jam concert at Roskilde Festival in Denmark \cite{pearl_jam}. An uncontrolled surge, pushing the crowd towards the scene, caused immense pressure on the front most concert-goers, thrusting them against the barriers. The high-energy mass of people unknowingly trampled the victims, who succumbed under the pressure of the crowd. This incident is unfortunately not the only one of its kind, as crowd crushes continue to occur at mass gatherings around the world.
+\label{sec:background}
+On June 30th 2000, nine young men lost their lies in a crowd crush during a Pearl Jam concert at Roskilde Festival in Denmark \cite{pearl_jam}. An uncontrolled surge, pushing the crowd towards the scene, caused immense pressure on the front most concert-goers, thrusting them against the barriers. The high-energy mass of people unknowingly trampled the victims, who succumbed under the pressure of the crowd. This incident is unfortunately not the only one of its kind, as crowd crushes continue to occur at mass gatherings around the world. The 2021 Astroworld Festival in Houston, Texas, resulted in ten fatalities and hundreds of injuries due to a similar crowd surge.
+
+
+
+
+According to NBC News, "a 56-page event operations plan for the Astroworld festival detailed protocols for dangerous scenarios, including a shooter, bomb or terrorist threats, and severe weather. But it did not include information on what to do in the event of a crowd surge" \cite{astroworld}.
+
+
 
 \section{Problem definition}
 \label{sec:problem-definition}
@@ -35,7 +43,7 @@ As the autumn progressed, we began securing new collaborations in our target ind
 \section{Scope and purpose statement}
 \label{sec:mission-statement}
 
-This thesis continues approximately where Fluxense left off before the pivot. However, rather than following the path laid out by the startup and striving to develop a scalable commercial product, the purpose of this work is to create a tool that directly aids crowd safety managers at Roskilde Festival. This is partially due to our already close collaboration throughout the entirety of 2024, as well as their expressed interest in continuing our collaboration through this leg of the project. Additionally, it is the largest music festival in Northern Europe, attracting over 130 thousand guests each year \cite{rf}. With considerable prestige in the industry, as well as a passionate dedication to improving crowd safety, Roskilde Festival is an ideal partner for this project.
+This thesis continues approximately where Fluxense left off before the pivot. However, rather than following the path laid out by the startup and striving to develop a scalable commercial product, the purpose of this work is to create a tool that directly aids crowd safety managers at Roskilde Festival. The outlined product design and development is exclusively performed for Roskilde Festival, and the result is not intended for commercial use. The focus on Roskilde Festival in particular is partially due to our already close collaboration throughout the entirety of 2024, as well as their expressed interest in continuing our collaboration through this leg of the project. Additionally, it is the largest music festival in Northern Europe, attracting over 130 thousand guests each year \cite{rf}. With considerable prestige in the industry, as well as a passionate dedication to improving crowd safety, Roskilde Festival is an ideal partner for this project.
 
 It is important to note that the majority of crowd safety practices presented in this thesis are gathered through discussions with Roskilde Festival's safety team. While occasional references may be made to interactions or insights gained through collaborations with other festivals, these are included solely to illustrate the broader landscape and are not indicative of the project's applicability beyond Roskilde. These findings are also assumed limited to a Danish context, as all discussions with crowd safety professionals were with Danish festivals. Additionally, it was observed during these consultations that some prominent experts occasionally presented viewpoints that could be interpreted as subjective or opinionated. However, as the explicit goal of this project is to provide a functional tool for Roskilde Festival's specific operational environment, a critical evaluation of the objective validity of these statements falls outside the defined scope and is not deemed essential for achieving the project's objectives.
 
@@ -70,7 +78,7 @@ In their book, \textit{Design Science}, Hubka and Eder characterize the design p
 
 \subsection{Comparison of frameworks}
 \vspace{2em}
-\begin{figure}[H]
+\begin{figure}[htb!]
   \centering
   \includegraphics[width=\textwidth]{Pictures/Figures/cross.png}
   \caption{Cross' four-stage model of the design process}
@@ -79,7 +87,7 @@ In their book, \textit{Design Science}, Hubka and Eder characterize the design p
 
 Cross \cite{cross} proposes likely the most simplistic, yet well-known framework: a four-stage model comprised of \textit{exploration}, \textit{generation}, \textit{evaluation} and \textit{communication} (Figure \ref{fig:cross}). Cross describes this type of modal as descriptive, as it merely attempts to model the conventional, heuristic design process. More detailed models of this type exist, such as French's \cite{french} "anatomy of design," (Figure \ref{fig:french}) detailing four stages, most distinctly underlining the problem analysis and definition, as conducted in section \ref{sec:problem-definition}. According to Cross, these models differ from prescriptive models, which offer a more systematic procedure, as well an emphasis on analyzing and understanding the design problem before generating solution concepts. Perhaps the most well-known of these is offered by Pahl et. al \cite{pahl_beitz}, and is based on the following design stages: \textit{clarification of the task}, \textit{conceptual design}, \textit{embodiment design}, and \textit{detail design}. Combining the aforementioned models, Ulrich and Eppinger present a rather comprehensive framework. Their process is based on the following stages: \textit{concept development}, \textit{system-level design}, \textit{detail design}, and \textit{testing and refinement} \cite{ulrich_eppinger}.
 
-\begin{figure}[H]
+\begin{figure}[htb!]
   \centering
   \includegraphics[width=4cm]{Pictures/Figures/french.png}
   \caption{A block diagram illustrating the design process according to French. The circles represent stages reached, and the rectangles represent work in progress.}
@@ -96,7 +104,7 @@ In his book, \textit{The Lean Startup}, Eric Ries describes a simple, yet effect
 
 Building upon the exploration of frameworks conducted above, the following design methodology is proposed for this project. The design stage follows an engineering approach, guided by Ulrich and Eppinger's \textit{concept development} and \textit{system-level design} stages. Subsequently, the development stage is based on a more agile, entrepreneurial approach, as described by Ries. Standing in for the \textit{detail design} and \textit{testing and refinement} stages, Ries's \textit{Build-Measure-Learn} architecture is employed in order to facilitate rapid prototyping and iteration, albeit with a slight augmentation. The \textit{measure} and \textit{learn} stages are consolidated through periodic feedback sessions with Roskilde Festival, where implemented features are reviewed and emerging requirements are gathered. This eliminates the implied analysis between these two stages, as this project is developed in close collaboration with the target user, and its usage is not intended for a wider audience.
 
-Chapter \ref{chap:concept-development}, \textbf{Concept Development}, ultimately selects and proposes a conceptual solution to the problem outlined in section \ref{sec:problem-definition}. As defined by Ulrich and Eppinger, a concept is "a description of the form, function, and features of a product and is usually accompanied by a set of specifications, an analysis of competitive products, and an economic justification of the project." \cite{ulrich_eppinger} This selection is initially preceded by a thorough inspection into the intricacies of crowd safety management, as well as a review of potential solutions and existing products. A novel solution is thereafter presented, outlining requirement specifications, as well as its technical, legal, and financial feasibility.
+Chapter \ref{chap:concept-development}, \textbf{Concept Development}, ultimately selects and proposes a conceptual solution to the problem outlined in section \ref{sec:problem-definition}. As defined by Ulrich and Eppinger, a concept is "a description of the form, function, and features of a product and is usually accompanied by a set of specifications, an analysis of competitive products, and an economic justification of the project." \cite{ulrich_eppinger} This selection is initially preceded by a thorough inspection into the intricacies of crowd safety management, as well as a review of potential solutions and existing products. A novel solution is thereafter presented, outlining requirement specifications, as well as its legal feasibility.
 
 Chapter \ref{chap:system-level-design} focuses on the \textbf{System-level Design}, including the definition of the product architecture, and a decomposition of the product into subsystems and components. The full workflow from data collection to the resulting user interface is presented, followed by a detailed description of each sub-system, including the data collection, computer vision model, spatial mapping, metric extraction, and the user interface/frontend.
 
