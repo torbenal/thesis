@@ -2,16 +2,23 @@
 
 \section{Summary of results}
 
-Chapter \ref{chap:results} showcases the developed frontend application, which provides an intuitive interface for the Roskilde Festival safety team to access and analyze crowd dynamics data through interactive charts and maps. This interface was developed iteratively based on user feedback, directly addressing requirements such as core metric extraction, an intuitive user interface, and compliant data handling that ensures anonymized historical data retention. The chapter also details a technical performance evaluation of the system.
+This project set out to improve crowd safety measurability at Roskilde Festival by developing an AI-enabled video surveillance analysis platform. The research explored existing crowd safety management practices, identified key limitations in objective data acquisition, and proposed a technical solution to address these gaps.
 
-% todo ^^^
+The core of the project involved designing and implementing a system capable of processing video footage to extract actionable crowd dynamics metrics. This was achieved through a multi-stage process encompassing strategic data collection using deployed cameras, development and fine-tuning of a YOLO-based computer vision model for head detection and tracking, spatial mapping via homography to translate pixel coordinates to real-world GIS data, and subsequent extraction of key metrics such as ingress/egress counts, flow rates, cumulative population, crowd density, and movement patterns.
 
+The developed system successfully met its defined objectives, proved through a workshop conducted with key members of the Roskilde Festival safety team.  Participants rated the tool highly for perceived value, effort reduction, and confidence enhancement in addressing typical planning and communication scenarios. The feedback highlighted the tool's potential to streamline workflows, particularly in justifying safety requirements and in planning based on objective data rather than solely estimations or past anecdotal knowledge. The safety team also identified further potential use-cases, such as optimizing fencing layouts and evaluating the effectiveness of crowd distribution strategies.
 
-Furthermore, the business value of the product was evaluated through a workshop with key members of the Roskilde Festival safety team, where scenarios were used to demonstrate the tool's ability to provide objective data, enhance safety planning, improve internal communication with visual evidence, and create reliable documentation for post-event analysis and knowledge retention. The workshop highlighted the tool's value in replacing subjective estimations with concrete data, thereby increasing confidence in planning decisions and saving time, particularly in communicating safety requirements to other departments. The safety team also identified emerging values, such as its potential role in planning entrances around the Arena stage and determining fencing layouts by providing objective data to evaluate the effectiveness of crowd distribution strategies.
+The technical performance evaluation of the fine-tuned head detection models showed an average F1-score of 77.45\% across various camera deployments, with individual models achieving F1-scores as high as 88.11\% (Arena CAM2). This indicates an acceptable level of accuracy in the core detection task.
+
+The system was designed with data compliance in mind, ensuring that video footage is processed to yield anonymized, aggregated data for storage and presentation, thereby adhering to GDPR principles.
+
+In essence, the project successfully developed and validated a functional prototype of an AI-driven platform that provides objective, measurable insights into crowd dynamics, demonstrating clear benefits for Roskilde Festival's safety management practices.
 
 \section{Market expansion opportunities}
 
-\section{Technical challenges and lessons learned}
+While this thesis project was specifically tailored to the needs of Roskilde Festival and not intended for commercial use, the underlying technology and the insights gained have significant potential for market expansion beyond this initial application. This project has essentially created a template for other safety-focused event managers. With minor adjustments, the developed system can be adapted to other music festivals, sporting events, or even public gatherings. Where there are cameras, there is a way.
+
+The technology can also be applied to other sectors, such as transportation hubs (airports, train stations), urban planning (monitoring pedestrian traffic in city centers), or business intelligence (analyzing customer flow in retail environments).
 
 \section{Technical improvements}
 

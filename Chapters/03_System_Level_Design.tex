@@ -1,16 +1,21 @@
 \chapter{System-level Design}
 \label{chap:system-level-design}
 
+This chapter provides a comprehensive overview of the system-level design, as defined by Ulrich and Eppinger \cite{ulrich_eppinger}. After presenting the product architecture, the chapter delves into the individual sub-systems that comprise the system. Each sub-system is described in detail, including its purpose, functionality, and how it integrates with the overall system.
+
 \section{Product architecture}
 
-\begin{figure}
+\begin{figure}[htb!]
   \centering
   \includegraphics[width=0.9\textwidth]{Pictures/Figures/system_flowchart.png}
   \caption{Flowchart visualizing the system architecture. \textit{Images have been intentionally blurred to protect privacy}.}
+  \label{fig:system_flowchart}
 \end{figure}
 
 
 \section{Sub-systems}
+
+The system is composed of five main sub-systems, each serving a distinct purpose in the overall functionality of the product. These sub-systems are: \textit{Data collection}, \textit{Computer vision model}, \textit{Spatial mapping and GIS}, and \textit{Metric extraction}, and finally the \textit{Interface/frontend}. Each sub-system is sequentially dependent, as illustrated in Figure \ref{fig:system_flowchart}.
 
 \subsection{Data collection}
 \label{sec:data_collection}
@@ -21,9 +26,9 @@ The selected cameras were Reolink RLC-520A, which are PoE-enabled (Power over Et
 
 As agreed upon with Roskilde Festival's safety team, the cameras were installed around the Eos stage during the first three days of the festival, and subsequently moved to the Arena stage for the remainder of the festival.
 
-Determining camera placement for the Eos stage was relatively trivial. During the festival's "First Days," (June 30th to July 2nd) the remainder of the festival site, excluding the Gaia stage, was closed off to guests, leaving only two pathways for entering and exiting the stage area. At each of these two pathways, two cameras were installed, oriented to face one another. \textit{CAM1} and \textit{CAM3} were positioned at Eos' southern entrance, Entrance 10, while \textit{CAM2} and \textit{CAM4} were placed at the eastern entrance, towards the Gaia stage (Figure \ref{fig:eos_cameras}). This dual-camera configuration served two purposes: ensuring complete monitoring of the pathway's width, as well as providing a redundant dataset for each location, effectively mitigating the risk of equipment malfunction during the initial deployment.
+Determining camera placement for the Eos stage was relatively trivial. During the festival's "First Days," (June 30th to July 2nd) the remainder of the festival site, excluding the Gaia stage, was closed off to guests, leaving only two pathways for entering and exiting the stage area. At each of these two pathways, two cameras were installed, oriented to face one another. \textit{CAM2} and \textit{CAM3} were positioned at Eos' southern entrance, Entrance 10, while \textit{CAM1} and \textit{CAM4} were placed at the eastern entrance, towards the Gaia stage (Figure \ref{fig:eos_cameras}). This dual-camera configuration served two purposes: ensuring complete monitoring of the pathway's width, as well as providing a redundant dataset for each location, effectively mitigating the risk of equipment malfunction during the initial deployment.
 
-\begin{figure}
+\begin{figure}[htb!]
   \centering
   \begin{subfigure}{0.9\textwidth}
     \centering
@@ -60,11 +65,11 @@ Determining camera placement for the Eos stage was relatively trivial. During th
 \end{figure}
 
 
-Camera placement for the Arena stage presented greater complexity due to its significantly larger scale and increased number of entrance and exit points. Arena is located at the far eastern corner of the festival grounds, and it was anticipated that the majority of attendees would approach from the western side, where the remainder of the festival's stages are located. This involved three possible entrances/exits: \textit{the Stables}, \textit{the Graffiti Walk}, and \textit{the Fast-Track}. As the Graffiti Walk is the broadest and most heavily trafficked route, \textit{CAM1} was mounted atop a tall utility pole to ensure comprehensive coverage of this wide pathway. \textit{CAM2} was mounted on an aluminum pole to overlook the fast-track, and \textit{CAM4} was positioned to capture the stables entrance. Finally, \textit{CAM3} was placed at the southeast corner of the stage, at a junction point of the fast-track and Entrances 5 \& 6. This camera was positioned to capture individuals entering and exiting the latter two pathways. Altogether, these camera positions were designed to theoretically provide full coverage of the Arena stage's entrances and exits, allowing accurate metric extraction (Section \ref{sec:metric_extraction}). See Figure \ref{fig:arena_cameras} for a visualization of the camera placements.
+Camera placement for the Arena stage presented greater complexity due to its significantly larger scale and increased number of entrance and exit points. Arena is located at the far eastern corner of the festival grounds, and it was anticipated that the majority of attendees would approach from the western side, where the remainder of the festival's stages are located. This involved three possible entrances/exits: \textit{the Stables}, \textit{the Graffiti Walk}, and \textit{the Fast-Track}. As the Graffiti Walk is the broadest and most heavily trafficked route, \textit{CAM1} was mounted atop a tall utility pole to ensure comprehensive coverage of this wide pathway. \textit{CAM2} was mounted on an aluminum pole to overlook \textit{the Fast-Track}, and \textit{CAM4} was positioned to capture the stables entrance. Finally, \textit{CAM3} was placed at the southeast corner of the stage, at a junction point of \textit{the Fast-Track} and Entrances 5 \& 6. This camera was positioned to capture individuals entering and exiting the latter two pathways. Altogether, these camera positions were designed to theoretically provide full coverage of the Arena stage's entrances and exits, allowing accurate metric extraction (Section \ref{sec:metric_extraction}). See Figure \ref{fig:arena_cameras} for a visualization of the camera placements.
 
 The Reolink RLC-520A cameras also included infrared (IR) night vision capabilities, theoretically allowing for monitoring in low-light conditions. However, this feature proved ineffective in practice as the integrated software lacked functionality for time-based switching between day and night modes, offering only a subjective slider for "ambient brightness". This created unpredictability in terms of when the cameras would switch between modes, sometimes leading to the cameras using IR imaging during daylight hours. As this resulted in reduced image quality and limitations on the video frame rate, the cameras were configured to operate without the IR functionality. Therefore, the cameras were set to record continuously for only 12 hours each day, from 12:00 to 24:00. Furthermore, due to the cameras' maximum SD card storage capacity of 256 GB, archived footage required manual download and purging when relocating the equipment between stages.
 
-\begin{figure}
+\begin{figure}[htb!]
   \centering
   \begin{subfigure}{0.8\textwidth}
     \centering
@@ -102,48 +107,55 @@ The Reolink RLC-520A cameras also included infrared (IR) night vision capabiliti
 \end{figure}
 
 
-% 
 \subsection{Computer vision model}
 \label{sec:cv_model}
-
-% - YOLOv8 (Ultralytics)
-% - trained on frames annotated from each camera
-% - Each camera trained separately, and weights used seperately
-% - 1 class (person)
-% - 1280x1280 input size
 
 The core of the system's ability to analyze crowd dynamics relies on a robust computer vision model capable of detecting individuals within the video footage. This section details the model selection, training process, as well as its implementation for inference.
 
 \subsubsection{Model selection}
 
-The primary objective of the computer vision model in this system is the detection and localization of individuals within video frames; both are prerequisites for subsequent tracking and the metric extraction. Therefore, the selected model must provide image coordinates for each detected person, rather than merely an aggregate count. Methodologies in crowd analysis typically follow either density estimation approaches, which generate maps representing crowd concentration, or detection/localization-based approaches, which identify the coordinates of each individual, often via points or bounding boxes. As tracking individual trajectories is fundamental to this project's goals, localization-based methods were deemed most relevant.
+The primary objective of the computer vision model in this system is the detection and localization of individuals' heads within video frames; both are prerequisites for subsequent tracking and the metric extraction. Therefore, the selected model must provide image coordinates for each detected head, rather than merely an aggregate count. Methodologies in crowd analysis typically follow either density estimation approaches, which generate maps representing crowd concentration, or detection/localization-based approaches, which identify the coordinates of each individual, often via points or bounding boxes. As tracking individual trajectories is fundamental to this project's goals, localization-based methods were deemed most relevant.
 
 The model selection process involved evaluating architectures benchmarked on an established crowd analysis dataset, NWPU-Crowd \cite{nwpu}. Other prominent datasets known for their complexity include ShanghaiTech and JHU-CROWD++ \cite{shanghai_tech} \cite{jhu_crowd}. These datasets encompass diverse scenarios and significant variations in crowd density.
 
-One candidate architecture considered was CrowdHat, a recently proposed model aimed at enhancing the localization performance of standard object detectors within crowded environments \cite{crowdhat}. Given its high position on the NWPU-Crowd localization leaderboard as well as its availability as open-source software, CrowdHat was selected for initial evaluation.
+One candidate architecture considered was CrowdHat, a recently published model aimed at enhancing the localization performance of standard crowd analysis models within heavily crowded environments \cite{crowdhat}. Given its high position on the NWPU-Crowd localization leaderboard as well as its availability as open-source software, CrowdHat was selected for initial evaluation.
 
-Another prominent architecture evaluated was You Only Look Once (YOLO), representing a widely adopted family of object detectors known for high inference speed \cite{yolo}. This project employed the YOLOv8 implementation by Ultralytics. Standard YOLOv8 models are pre-trained on the large-scale COCO dataset, providing a generalized object detection capability \cite{ultralytics} \cite{coco}. However, achieving optimal performance for the specific domain of festival crowds necessitates fine-tuning this pre-trained model on representative video data captured during the event. YOLOv8 was chosen for comprehensive testing and ultimate deployment due to its established performance benchmarks, the ease of implementation offered by the Ultralytics library, as well as its significant advantage in processing speed.
+Another prominent architecture evaluated was You Only Look Once (YOLO), representing a widely adopted family of object detectors known for high inference speed \cite{yolo}. This project employed the YOLOv8 implementation by Ultralytics \cite{ultralytics}. Standard YOLOv8 models provided by Ultralytics are pre-trained on the large-scale COCO dataset, providing a generalized object detection capability \cite{coco}. However, achieving optimal performance for the specific domain of festival crowds necessitates fine-tuning this pre-trained model on representative video data captured during the event. YOLOv8 was chosen for comprehensive testing and ultimate deployment due to its established performance benchmarks, the ease of implementation offered by the Ultralytics library, as well as its significant advantage in processing speed.
 
-% TODO
-A comparison of processing efficiency revealed that CrowdHat processes frames at an average of [Insert CrowdHat Inference Time] ms/frame, whereas YOLOv8 achieves an average inference time of [Insert YOLOv8 Inference Time] ms/frame on the identical hardware configuration. Considering the practical requirement for efficient video analysis alongside robust detection accuracy, YOLOv8 offered a superior balance. Consequently, the fine-tuned YOLOv8 model was selected as the definitive detector for integration into the system.
+A comparison of processing efficiency revealed that CrowdHat processes frames at an average of 261.5 ms/frame, whereas YOLOv8 achieves an average inference time of 66 ms/frame on the identical hardware configuration. Additionally, YOLOv8 demonstrated superior accuracy to CrowdHat, as seen in Table \ref{tab:cv_model_comparison}. Considering the practical requirement for efficient video analysis alongside robust detection accuracy, YOLOv8 offered a superior balance. Consequently, the fine-tuned YOLOv8 model was selected as the definitive detector for integration into the system.
 
+\begin{table}[htb!]
+  \centering
+  \label{tab:cv_model_comparison}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{0.9\textwidth}{@{} ll >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+    \toprule
+    Model    & Proc. Time (ms/frame) & Avg. Precision (\%) & Avg. Recall (\%) & Avg. F1-Score (\%) \\
+    \midrule
+    CrowdHat & 261.5                 & 31.70               & 74.26            & 42.32              \\
+    YOLOv8   & 66                    & 87.07               & 70.92            & 77.45              \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Comparison of processing speed and model performance between CrowdHat and YOLOv8 on footage from Roskilde Festival. CrowdHat provides a slightly improved recall, but underperforms in all other metrics, as reflected in the F1-Score and processing speed.}
+  \renewcommand{\arraystretch}{1.0}
+
+\end{table}
 
 
 \subsubsection{Annotation}
 
 While pre-training on large, diverse datasets like COCO provides the YOLOv8 model with a robust general object detection capability, achieving optimal performance necessitates fine-tuning on a custom-annotated dataset. The rationale for this extends beyond simply adapting to the general festival environment; the goal is to develop highly specialized models optimized for the precise conditions and appearance characteristics encountered by each camera at each specific deployment position. It is hypothesized that such hyper-specialization yields superior detection accuracy compared to a more generalized model.
 
-\begin{figure}
+\begin{figure}[htb!]
   \centering
   \includegraphics[width=\textwidth]{Pictures/Figures/annotation_flowchart.png}
   \caption{Flowchart visualizing the annotation process. \textit{Images have been intentionally blurred to protect privacy}.}
+  \label{fig:annotation_flowchart}
 \end{figure}
-
-% TODO: add accuracy comparison of generalized crowdhat vs specialized yolo
 
 The annotation process utilized Label Studio, an open-source data labeling tool \cite{label_studio}. A self-hosted instance was employed to ensure data privacy and control, preventing the need to upload potentially sensitive video material captured on-site to third-party services.
 
-Random frames were extracted from the video recordings detailed in Section \ref{sec:data_collection}. The annotation target was specifically the heads of individuals, rather than full bodies. This choice was predicated on the assumption that in dense crowd scenarios, heads are more consistently visible than entire bodies, providing a more reliable feature for detection and subsequent tracking. Bounding boxes were drawn around each identifiable head, assigned the single class label "person".
+Random frames were extracted from the video recordings detailed in Section \ref{sec:data_collection}. The annotation target was specifically the heads of individuals, rather than full bodies. This choice was predicated on the assumption that in dense crowd scenarios, heads are more consistently visible than entire bodies, providing a more reliable feature for detection and subsequent tracking. This is reflected in Roskilde Festival's Levels of Service model illustrated in Figure \ref{fig:fruin}. Bounding boxes were drawn around each identifiable head, assigned the single class label "person".
 
 Specific annotation guidelines were established to ensure consistency:
 \begin{itemize}
@@ -152,15 +164,12 @@ Specific annotation guidelines were established to ensure consistency:
   \item If individuals were distant (e.g., in the far background) or within extremely dense parts of the crowd, making distinct heads difficult to discern, bounding boxes were only placed where a head could be clearly distinguished. Ambiguous cases were omitted to maintain label quality.
 \end{itemize}
 
-
-
-To minimize time spent annotating, an iterative approach was used. After an initial batch of frames was annotated, a YOLOv8 model was trained on this preliminary data. This temporary model was then integrated with Label Studio to pre-annotate subsequent frames by suggesting bounding boxes based on its predictions. This workflow is commonly referred to as human-in-the-loop, and significantly expedited annotation time, as the task increasingly involved refining or validating the model's suggestions rather than manually creating annotations. Additionally, this methodology offered a visual indicator of model performance, as the diminishing need for manual adjustments indicated that the model was becoming more robust and that enough data had been annotated for final training.
+To minimize time spent annotating, an iterative approach was used, as illustrated in Figure \ref{fig:annotation_flowchart}. After an initial batch of frames was annotated, a YOLOv8 model was trained on this preliminary data. This temporary model was then integrated with Label Studio to pre-annotate subsequent frames by suggesting bounding boxes based on its predictions. This workflow is commonly referred to as human-in-the-loop, and significantly expedited annotation time, as the task increasingly involved refining or validating the model's suggestions rather than manually creating annotations. Additionally, this methodology offered a visual indicator of model performance, as the diminishing need for manual adjustments indicated that the model was becoming more robust and that enough data had been annotated for final training.
 
 The annotation results are summarized in Table \ref{tab:annotation_stats}.
 
-\begin{table}
+\begin{table}[htb!]
   \centering
-  \label{tab:annotation_stats}
   \renewcommand{\arraystretch}{1.15}
   \begin{tabularx}{0.9\textwidth}{@{} ll >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
     \toprule
@@ -180,19 +189,21 @@ The annotation results are summarized in Table \ref{tab:annotation_stats}.
     \bottomrule
   \end{tabularx}
   \caption{Annotation statistics per camera deployment. Note that \textit{CAM1} and \textit{CAM3} at Eos stage were not annotated, as they were redundant to \textit{CAM2} and \textit{CAM4} respectively. \textit{CAM4} at Arena stage was also not annotated due to time constraints.}
-
+  \label{tab:annotation_stats}
   \renewcommand{\arraystretch}{1.0}
 \end{table}
 
 \subsubsection{Training}
-To develop the specialized models required for each camera deployment, the YOLOv8m model, pre-trained on the COCO dataset, was fine-tuned using the custom annotated dataset (detailed in previous section). This process utilized the Ultralytics framework \cite{ultralytics}.
+To develop the specialized models required for each camera deployment, the YOLOv8 model, pre-trained on the COCO dataset, was fine-tuned using the custom annotated dataset (detailed in previous section). This process utilized the Ultralytics framework \cite{ultralytics}.
 
-Training was configured with the following key hyperparameters: an input image size of 1280x1280 pixels, a batch size of 4, and training duration of 600 epochs with early stopping patience of 200 epochs. The process was optimized for the single "person" class. To accelerate the computationally intensive training process, computations were performed on a personal computer equipped with an Nvidia RTX 4080 SUPER graphics card, leveraging GPU acceleration.
+Training was configured with the following hyperparameters: an input image size of 1280x1280 pixels, and training duration of 600 iterations, or epochs, with early stopping patience of 200 epochs, after which training will be terminated if no model improvement is observed. The process was optimized for the single "person" class. To accelerate the computationally intensive process, training was performed on a computer equipped with an Nvidia RTX 4080 SUPER graphics card, leveraging GPU acceleration.
+
+As is standard in training machine learning models, the annotated images were divided into three portions for each camera view: training, validation, and test sets. The training set comprises the majority of the data, in this case 80\%, and is directly used to train the model. The validation set is used to evaluate the model's performance on unseen data during each iteration, testing the model's ability to generalize its learning. The final portion of the dataset, the test set, is reserved for final evaluation of the model's performance after training is complete. The test set is not used during training or validation, ensuring that the model's performance is assessed on completely unseen data.
 
 This fine-tuning stage produced specialized model weights adapted to the unique visual characteristics of each camera view at the festival, which were then used for the subsequent inference stage.
 
 \subsubsection{Inference and Tracking}
-Following the training phase, the inference stage employs the specialized YOLOv8 models to detect heads within the recorded video footage, which are then tracked across frames using an object tracking algorithm. This combined inference and tracking pipeline generates the foundational data required for subsequent spatial mapping and metric extraction. The process begins by loading the fine-tuned model weights specific to the camera view being analyzed. Input videos are processed in parallel, analyzing each frame individually to identify and track individuals present. Videos are processed at a rate of 15 frames per second (FPS), which is half the recorded frame rate of 30 FPS.
+Following the training phase, the inference stage employs the specialized YOLOv8 models to detect heads within the recorded video footage, which are then tracked across frames using an object tracking algorithm. This combined inference and tracking pipeline generates the foundational data required for subsequent spatial mapping and metric extraction. The process begins by loading the fine-tuned model specific to the camera view being analyzed. Input videos are processed in parallel, analyzing each frame individually to identify and track individuals present. Videos are processed at a rate of 15 frames per second (FPS), which is half the recorded frame rate of 30 FPS. This frame rate was selected to balance processing speed and accuracy, as experimentation showed that tracking performance was not significantly affected by halving the frame rate. In theory, this provides a 2x speedup in processing time.
 
 Each frame is resized to a 1280x1280 pixel resolution, as defined during training, before running inference. This prepared frame is then passed to the fitted YOLOv8 model, which outputs bounding boxes around predicted heads and assigns confidence scores to these detections. These predictions are filtered; detections falling below a predefined confidence threshold are discarded (40\%), and Non-Maximum Suppression (NMS) is applied to resolve significant overlaps between bounding boxes, preserving only the most confident prediction.
 
@@ -211,7 +222,7 @@ Performing the homography calculation requires two sets of corresponding points:
 
 Note a slight limitation of homography in this context; homography assumes that the mapping occurs between two planar surfaces. While the surfaces in the camera and map are treated as planar, the Earth's surface is curved. For the relatively small geographic areas covered by individual camera views, the ground surface can be reasonably approximated as flat. The error introduced by this assumption is considered negligible for the purposes of crowd analysis at this scale.
 
-\begin{figure}
+\begin{figure}[htb!]
   \begin{subfigure}{0.46\textwidth}
     \centering
     \includegraphics[width=\textwidth]{Pictures/Figures/homography_cam.png}
