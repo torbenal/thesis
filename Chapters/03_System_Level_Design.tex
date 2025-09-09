@@ -5,30 +5,34 @@ This chapter provides a comprehensive overview of the system-level design, as de
 
 \section{Product architecture}
 
-\begin{figure}[htb!]
+The product's architecture is designed to be modular and sequential, functioning as a pipeline from raw footage to the output of crowd insights. The specifics of this architecture, including detailed descriptions of its core sub-systems, are presented in the subsequent sections. Section \ref{sec:sub_systems} introduces these sub-systems, and elaborates on their individual functionality, as well as their interactions within the larger system framework. Figure \ref{fig:system_flowchart} illustrates an architectural diagram of the system, demonstrating its sequential nature.
+
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.9\textwidth]{Pictures/Figures/system_flowchart.png}
-  \caption{Flowchart visualizing the system architecture. \textit{Images have been intentionally blurred to protect privacy}.}
+  \caption{Flowchart visualizing the system architecture. Note that each subsequent step is performed for each camera separately.
+    \textit{Images have been intentionally blurred to protect privacy}.}
   \label{fig:system_flowchart}
 \end{figure}
 
+% TODO: add clear page when text is done
 
 \section{Sub-systems}
-
-The system is composed of five main sub-systems, each serving a distinct purpose in the overall functionality of the product. These sub-systems are: \textit{Data collection}, \textit{Computer vision model}, \textit{Spatial mapping and GIS}, and \textit{Metric extraction}, and finally the \textit{Interface/frontend}. Each sub-system is sequentially dependent, as illustrated in Figure \ref{fig:system_flowchart}.
+\label{sec:sub_systems}
+The system is composed of five main sub-systems, each serving a distinct purpose in the overall functionality of the product. These sub-systems are: \textit{data collection}, \textit{computer vision model}, \textit{spatial mapping}, and \textit{metric extraction}, and finally the \textit{interface/frontend}.
 
 \subsection{Data collection}
 \label{sec:data_collection}
 
-Data collection constitutes the initial, vital stage of the system, providing the raw data required for all subsequent processing and analysis. This process entailed the on-site deployment of designated cameras, strategically positioned to capture the targeted crowd dynamics.
+Data collection constitutes the initial, vital stage of the system, providing the raw data required for all subsequent processing and analysis. This process entailed the on-site deployment of designated cameras, strategically positioned to capture the targeted crowd dynamics. As mentioned in Section \ref{sec:solution}, this could also be achieved through the use of existing cameras.
 
 The selected cameras were Reolink RLC-520A, which are PoE-enabled (Power over Ethernet) and capable of recording 5MP (2560x1920 pixels) video at 30 frames per second. A separate PoE switch (Ubiquiti PoE++ Adapter), connected to a standard power outlet, was required to power the cameras. This setup allowed connection to the cameras via an Ethernet cable linked to a laptop, enabling camera configuration and live feed monitoring. Utilizing the cameras' integrated software, recording windows could be predefined such that footage would automatically be archived on the internal SD card. This setup was designed to ensure that the cameras could operate independently without requiring a constant connection to a computer. Mounting the cameras was achieved with 3D-printed brackets, designed to securely attach the cameras to existing infrastructure, such as fences or poles. Where existing structures were unavailable, aluminum poles were utilized to achieve the necessary height for capturing the entire designated area. Four cameras were deployed, denoted as \textit{CAM1}, \textit{CAM2}, \textit{CAM3}, and \textit{CAM4}.
 
-As agreed upon with Roskilde Festival's safety team, the cameras were installed around the Eos stage during the first three days of the festival, and subsequently moved to the Arena stage for the remainder of the festival.
+As agreed upon with Roskilde Festival's safety team, the cameras were installed around the Eos stage during the first three days of the festival, and subsequently moved to the Arena stage for the remainder of the festival (Appendix \ref{appendix:rf-may-24}).
 
-Determining camera placement for the Eos stage was relatively trivial. During the festival's "First Days," (June 30th to July 2nd) the remainder of the festival site, excluding the Gaia stage, was closed off to guests, leaving only two pathways for entering and exiting the stage area. At each of these two pathways, two cameras were installed, oriented to face one another. \textit{CAM2} and \textit{CAM3} were positioned at Eos' southern entrance, Entrance 10, while \textit{CAM1} and \textit{CAM4} were placed at the eastern entrance, towards the Gaia stage (Figure \ref{fig:eos_cameras}). This dual-camera configuration served two purposes: ensuring complete monitoring of the pathway's width, as well as providing a redundant dataset for each location, effectively mitigating the risk of equipment malfunction during the initial deployment.
+Determining camera placement for the Eos stage was relatively trivial. During the festival's "First Days," (June 30th to July 2nd) the remainder of the festival site, excluding the Gaia stage, was closed off to guests, leaving only two pathways for entering and exiting the stage area. At each of these two pathways, two cameras were installed, oriented to face one another. \textit{CAM2} and \textit{CAM3} were positioned at Eos' southern entrance, Entrance 10, while \textit{CAM1} and \textit{CAM4} were placed at the eastern entrance, towards the Gaia stage (Figure \ref{fig:eos_cameras}). This dual-camera configuration provided a redundant dataset for each location, effectively mitigating the risk of equipment malfunction during the initial deployment.
 
-\begin{figure}[htb!]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{0.9\textwidth}
     \centering
@@ -59,17 +63,18 @@ Determining camera placement for the Eos stage was relatively trivial. During th
     \caption{CAM4 Preview}
   \end{subfigure}
 
-  \caption{Camera placement at Eos stage, with approximate field of view (FOV) indicated (a). The bottom images show sample frames from the four cameras deployed at the Eos stage, showing the field of view for each camera position (b-e).}
+  \caption{Camera placement at Eos stage, with approximate field of view (FOV) indicated (a). Main entrance/exit pathways are also labelled. The bottom images show sample frames from the four cameras deployed at the Eos stage, showing the field of view for each camera position (b-e).}
   \label{fig:eos_cameras}
+  \clearpage
 
 \end{figure}
 
 
-Camera placement for the Arena stage presented greater complexity due to its significantly larger scale and increased number of entrance and exit points. Arena is located at the far eastern corner of the festival grounds, and it was anticipated that the majority of attendees would approach from the western side, where the remainder of the festival's stages are located. This involved three possible entrances/exits: \textit{the Stables}, \textit{the Graffiti Walk}, and \textit{the Fast-Track}. As the Graffiti Walk is the broadest and most heavily trafficked route, \textit{CAM1} was mounted atop a tall utility pole to ensure comprehensive coverage of this wide pathway. \textit{CAM2} was mounted on an aluminum pole to overlook \textit{the Fast-Track}, and \textit{CAM4} was positioned to capture the stables entrance. Finally, \textit{CAM3} was placed at the southeast corner of the stage, at a junction point of \textit{the Fast-Track} and Entrances 5 \& 6. This camera was positioned to capture individuals entering and exiting the latter two pathways. Altogether, these camera positions were designed to theoretically provide full coverage of the Arena stage's entrances and exits, allowing accurate metric extraction (Section \ref{sec:metric_extraction}). See Figure \ref{fig:arena_cameras} for a visualization of the camera placements.
+Camera placement for the Arena stage presented greater complexity due to its significantly larger scale and increased number of entrance and exit points. Arena is located at the far eastern corner of the festival grounds, and it was anticipated that the majority of attendees would approach from the western side, where the remainder of the festival's stages are located. This involved three possible entrances/exits: \textit{the Stables}, \textit{the Graffiti Walk}, and \textit{the Fast-Track}. As the Graffiti Walk is the broadest and most heavily trafficked route, \textit{CAM1} was mounted atop a tall utility pole to ensure comprehensive coverage of this wide pathway. \textit{CAM2} was mounted on an aluminum pole to overlook \textit{the Fast-Track}, and \textit{CAM4} was positioned to capture the stables entrance. Finally, \textit{CAM3} was placed at the southeast corner of the stage, at a junction point of \textit{the Fast-Track} and Entrances 5 \& 6. This camera was positioned to capture individuals entering and exiting the latter two pathways. Altogether, these camera positions were designed to theoretically provide full coverage of the Arena stage's entrances and exits, allowing accurate metric extraction (Section \ref{sec:metric_extraction}). See Figure \ref{fig:arena_cameras} for a visualization of the camera placements at Arena.
 
-The Reolink RLC-520A cameras also included infrared (IR) night vision capabilities, theoretically allowing for monitoring in low-light conditions. However, this feature proved ineffective in practice as the integrated software lacked functionality for time-based switching between day and night modes, offering only a subjective slider for "ambient brightness". This created unpredictability in terms of when the cameras would switch between modes, sometimes leading to the cameras using IR imaging during daylight hours. As this resulted in reduced image quality and limitations on the video frame rate, the cameras were configured to operate without the IR functionality. Therefore, the cameras were set to record continuously for only 12 hours each day, from 12:00 to 24:00. Furthermore, due to the cameras' maximum SD card storage capacity of 256 GB, archived footage required manual download and purging when relocating the equipment between stages.
+The Reolink RLC-520A cameras also included infrared (IR) night vision capabilities, theoretically allowing for monitoring in low-light conditions. However, this feature proved ineffective in practice as the integrated software lacked functionality for time-based switching between day and night modes, offering only a subjective slider for "ambient brightness". This created unpredictability in terms of when the cameras would switch between modes, sometimes leading to the cameras using IR imaging during daylight hours. As this resulted in reduced image quality and limitations on the video frame rate, the cameras were configured to operate without the IR functionality. Therefore, the cameras were set to record continuously for only 12 hours each day, from 12:00 to 24:00, as the footage quality in darker conditions was not feasible for further processing. Furthermore, due to the cameras' maximum SD card storage capacity of 256 GB, archived footage required manual download and purging when relocating the equipment between stages.
 
-\begin{figure}[htb!]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{0.8\textwidth}
     \centering
@@ -101,42 +106,41 @@ The Reolink RLC-520A cameras also included infrared (IR) night vision capabiliti
     \caption{CAM4 Preview}
   \end{subfigure}
 
-  \caption{Camera placement at Arena stage, with approximate field of view (FOV) indicated (a). The bottom images show sample frames from the four cameras deployed at the Arena stage, showing the field of view for each camera position (b-e).}
+  \caption{Camera placement at Arena stage, with approximate field of view (FOV) indicated (a). Main entrance/exit pathways are also labelled. The bottom images show sample frames from the four cameras deployed at the Arena stage, showing the field of view for each camera position (b-e).}
   \label{fig:arena_cameras}
 
 \end{figure}
 
 
-\subsection{Computer vision model}
+\subsection{Computer Vision Model}
 \label{sec:cv_model}
 
 The core of the system's ability to analyze crowd dynamics relies on a robust computer vision model capable of detecting individuals within the video footage. This section details the model selection, training process, as well as its implementation for inference.
 
-\subsubsection{Model selection}
+\subsubsection{Model Selection}
 
-The primary objective of the computer vision model in this system is the detection and localization of individuals' heads within video frames; both are prerequisites for subsequent tracking and the metric extraction. Therefore, the selected model must provide image coordinates for each detected head, rather than merely an aggregate count. Methodologies in crowd analysis typically follow either density estimation approaches, which generate maps representing crowd concentration, or detection/localization-based approaches, which identify the coordinates of each individual, often via points or bounding boxes. As tracking individual trajectories is fundamental to this project's goals, localization-based methods were deemed most relevant.
+The primary objective of the computer vision model in this system is the detection and localization of individuals' heads within video frames; both being prerequisites for subsequent tracking and metric extraction. Therefore, the selected model must provide image coordinates for each detected head, rather than merely an aggregate count. Methodologies in crowd analysis typically follow either density estimation approaches, which generate maps representing crowd concentration, or detection/localization-based approaches, which identify the coordinates of each individual, often via points or bounding boxes. As tracking individual trajectories is fundamental to this project's goals, localization-based methods were deemed most relevant.
 
-The model selection process involved evaluating architectures benchmarked on an established crowd analysis dataset, NWPU-Crowd \cite{nwpu}. Other prominent datasets known for their complexity include ShanghaiTech and JHU-CROWD++ \cite{shanghai_tech} \cite{jhu_crowd}. These datasets encompass diverse scenarios and significant variations in crowd density.
+The model selection process involved exploring architectures benchmarked on an established crowd analysis dataset, namely NWPU-Crowd \cite{nwpu}. Other prominent datasets known for their broad representation of crowded environments include ShanghaiTech and JHU-CROWD++ \cite{shanghai_tech} \cite{jhu_crowd}. These datasets encompass diverse scenarios and significant variations in crowd density. As the authors of NWPU-Crowd maintain a public leaderboard for evaluating models on their dataset, it was selected as a reference for standardized pre-trained models. One candidate architecture considered was Crowdhat, a recently published model aimed at enhancing the localization performance of standard crowd analysis models within heavily crowded environments \cite{crowdhat}. Given its high position on the NWPU-Crowd localization leaderboard as well as its availability as open-source software, Crowdhat was selected for initial evaluation.
 
-One candidate architecture considered was CrowdHat, a recently published model aimed at enhancing the localization performance of standard crowd analysis models within heavily crowded environments \cite{crowdhat}. Given its high position on the NWPU-Crowd localization leaderboard as well as its availability as open-source software, CrowdHat was selected for initial evaluation.
+Another prominent architecture evaluated was You Only Look Once (YOLO), representing a widely adopted family of object detectors known for high inference speed \cite{yolo}. This project employed the YOLOv8 implementation by Ultralytics \cite{ultralytics}. Standard YOLOv8 models provided by Ultralytics are pre-trained on the large-scale COCO dataset, providing a generalized object detection capability \cite{coco}. However, achieving optimal performance for the specific domain of large crowds necessitates fine-tuning this pre-trained model on representative video data captured during the event.
 
-Another prominent architecture evaluated was You Only Look Once (YOLO), representing a widely adopted family of object detectors known for high inference speed \cite{yolo}. This project employed the YOLOv8 implementation by Ultralytics \cite{ultralytics}. Standard YOLOv8 models provided by Ultralytics are pre-trained on the large-scale COCO dataset, providing a generalized object detection capability \cite{coco}. However, achieving optimal performance for the specific domain of festival crowds necessitates fine-tuning this pre-trained model on representative video data captured during the event. YOLOv8 was chosen for comprehensive testing and ultimate deployment due to its established performance benchmarks, the ease of implementation offered by the Ultralytics library, as well as its significant advantage in processing speed.
+A comparison of processing efficiency revealed that Crowdhat processes frames at an average of 261.5 ms/frame, whereas YOLOv8 achieves an average inference time of 66 ms/frame on the identical hardware configuration. Additionally, YOLOv8 demonstrated superior accuracy to Crowdhat, as seen in Table \ref{tab:cv_model_comparison}. Considering the practical requirement for efficient video analysis alongside robust detection accuracy, YOLOv8 offered a superior balance. Consequently, the fine-tuned YOLOv8 model was chosen for ultimate deployment due to  the ease of implementation offered by the Ultralytics library, as well as its significant advantage over Crowdhat.
 
-A comparison of processing efficiency revealed that CrowdHat processes frames at an average of 261.5 ms/frame, whereas YOLOv8 achieves an average inference time of 66 ms/frame on the identical hardware configuration. Additionally, YOLOv8 demonstrated superior accuracy to CrowdHat, as seen in Table \ref{tab:cv_model_comparison}. Considering the practical requirement for efficient video analysis alongside robust detection accuracy, YOLOv8 offered a superior balance. Consequently, the fine-tuned YOLOv8 model was selected as the definitive detector for integration into the system.
-
-\begin{table}[htb!]
+\begin{table}
   \centering
-  \label{tab:cv_model_comparison}
   \renewcommand{\arraystretch}{1.15}
   \begin{tabularx}{0.9\textwidth}{@{} ll >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
     \toprule
-    Model    & Proc. Time (ms/frame) & Avg. Precision (\%) & Avg. Recall (\%) & Avg. F1-Score (\%) \\
+    Model    & Processing Time (ms/frame) & Precision (avg. \%) & Recall (avg. \%) & F1-Score (avg. \%) \\
     \midrule
-    CrowdHat & 261.5                 & 31.70               & 74.26            & 42.32              \\
-    YOLOv8   & 66                    & 87.07               & 70.92            & 77.45              \\
+    CrowdHat & 261.5                      & 31.70               & 74.26            & 42.32              \\
+    YOLOv8   & 66                         & 87.07               & 70.92            & 77.45              \\
     \bottomrule
   \end{tabularx}
-  \caption{Comparison of processing speed and model performance between CrowdHat and YOLOv8 on footage from Roskilde Festival. CrowdHat provides a slightly improved recall, but underperforms in all other metrics, as reflected in the F1-Score and processing speed.}
+  \caption{Comparison of processing speed and model performance between Crowdhat and fine-tuned YOLOv8 on footage from Roskilde Festival. Note that the pre-trained YOLOv8 model cannot be compared directly, as it classifies persons' entire bodies than just the heads. See full results in Section \ref{sec:technical-performance}. Crowdhat provides a slightly improved recall, but underperforms in all other metrics, as reflected in the F1-Score and processing speed. See Crowdhat performance on all camera footage in Appendix \ref{appendix:crowdhat}.}
+  \label{tab:cv_model_comparison}
+
   \renewcommand{\arraystretch}{1.0}
 
 \end{table}
@@ -144,9 +148,9 @@ A comparison of processing efficiency revealed that CrowdHat processes frames at
 
 \subsubsection{Annotation}
 
-While pre-training on large, diverse datasets like COCO provides the YOLOv8 model with a robust general object detection capability, achieving optimal performance necessitates fine-tuning on a custom-annotated dataset. The rationale for this extends beyond simply adapting to the general festival environment; the goal is to develop highly specialized models optimized for the precise conditions and appearance characteristics encountered by each camera at each specific deployment position. It is hypothesized that such hyper-specialization yields superior detection accuracy compared to a more generalized model.
+While pre-training on large, diverse datasets like COCO provides the YOLOv8 model with a robust general object detection capability, achieving optimal performance necessitates fine-tuning on a custom-annotated dataset. The rationale for this extends beyond simply adapting to the general festival environment; the goal is to develop highly specialized models optimized for the precise conditions encountered by each camera at each specific deployment position. It is hypothesized that such hyper-specialization yields superior detection accuracy compared to a more generalized model.
 
-\begin{figure}[htb!]
+\begin{figure}[ht!]
   \centering
   \includegraphics[width=\textwidth]{Pictures/Figures/annotation_flowchart.png}
   \caption{Flowchart visualizing the annotation process. \textit{Images have been intentionally blurred to protect privacy}.}
@@ -155,7 +159,7 @@ While pre-training on large, diverse datasets like COCO provides the YOLOv8 mode
 
 The annotation process utilized Label Studio, an open-source data labeling tool \cite{label_studio}. A self-hosted instance was employed to ensure data privacy and control, preventing the need to upload potentially sensitive video material captured on-site to third-party services.
 
-Random frames were extracted from the video recordings detailed in Section \ref{sec:data_collection}. The annotation target was specifically the heads of individuals, rather than full bodies. This choice was predicated on the assumption that in dense crowd scenarios, heads are more consistently visible than entire bodies, providing a more reliable feature for detection and subsequent tracking. This is reflected in Roskilde Festival's Levels of Service model illustrated in Figure \ref{fig:fruin}. Bounding boxes were drawn around each identifiable head, assigned the single class label "person".
+Random frames were extracted from the video recordings detailed in Section \ref{sec:data_collection}. The annotation target was specifically the heads of individuals, rather than full bodies. This choice was based on the assumption that in dense crowd scenarios, heads are more consistently visible than entire bodies. This is reflected in Roskilde Festival's Levels of Service model illustrated in Figure \ref{fig:fruin}. Bounding boxes were drawn around each identifiable head, assigned the single class label "person".
 
 Specific annotation guidelines were established to ensure consistency:
 \begin{itemize}
@@ -164,11 +168,11 @@ Specific annotation guidelines were established to ensure consistency:
   \item If individuals were distant (e.g., in the far background) or within extremely dense parts of the crowd, making distinct heads difficult to discern, bounding boxes were only placed where a head could be clearly distinguished. Ambiguous cases were omitted to maintain label quality.
 \end{itemize}
 
-To minimize time spent annotating, an iterative approach was used, as illustrated in Figure \ref{fig:annotation_flowchart}. After an initial batch of frames was annotated, a YOLOv8 model was trained on this preliminary data. This temporary model was then integrated with Label Studio to pre-annotate subsequent frames by suggesting bounding boxes based on its predictions. This workflow is commonly referred to as human-in-the-loop, and significantly expedited annotation time, as the task increasingly involved refining or validating the model's suggestions rather than manually creating annotations. Additionally, this methodology offered a visual indicator of model performance, as the diminishing need for manual adjustments indicated that the model was becoming more robust and that enough data had been annotated for final training.
+To minimize time spent annotating, an iterative approach was used, as illustrated in Figure \ref{fig:annotation_flowchart}. After an initial batch of frames was annotated, a YOLOv8 model was trained on this preliminary data. This temporary model was then integrated with Label Studio to pre-annotate subsequent frames by suggesting bounding boxes based on its predictions. This workflow is commonly referred to as human-in-the-loop annotation, and significantly expedited annotation time, as the task increasingly involved refining or validating the model's suggestions rather than manually creating annotations. Additionally, this methodology offered a visual indicator of model performance, as the diminishing need for manual adjustments indicated that the model was becoming more robust and that enough data had been annotated for final training.
 
 The annotation results are summarized in Table \ref{tab:annotation_stats}.
 
-\begin{table}[htb!]
+\begin{table}
   \centering
   \renewcommand{\arraystretch}{1.15}
   \begin{tabularx}{0.9\textwidth}{@{} ll >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
@@ -188,22 +192,22 @@ The annotation results are summarized in Table \ref{tab:annotation_stats}.
     \multicolumn{2}{@{}l}{\textbf{Total}} & \textbf{144} & \textbf{8774}                  \\
     \bottomrule
   \end{tabularx}
-  \caption{Annotation statistics per camera deployment. Note that \textit{CAM1} and \textit{CAM3} at Eos stage were not annotated, as they were redundant to \textit{CAM2} and \textit{CAM4} respectively. \textit{CAM4} at Arena stage was also not annotated due to time constraints.}
+  \caption{Annotation statistics per camera deployment. Note that \textit{CAM1} and \textit{CAM3} at Eos stage were not annotated, as they were redundant to  \textit{CAM4} and \textit{CAM2}, respectively. \textit{CAM4} at Arena stage was also not annotated due to time constraints.}
   \label{tab:annotation_stats}
   \renewcommand{\arraystretch}{1.0}
 \end{table}
 
 \subsubsection{Training}
-To develop the specialized models required for each camera deployment, the YOLOv8 model, pre-trained on the COCO dataset, was fine-tuned using the custom annotated dataset (detailed in previous section). This process utilized the Ultralytics framework \cite{ultralytics}.
+To develop the specialized models required for each camera deployment, the YOLOv8 model, pre-trained on the COCO dataset, was fine-tuned using the custom annotated datasets resulting from the previous section. This process utilized the Ultralytics framework \cite{ultralytics}.
 
-Training was configured with the following hyperparameters: an input image size of 1280x1280 pixels, and training duration of 600 iterations, or epochs, with early stopping patience of 200 epochs, after which training will be terminated if no model improvement is observed. The process was optimized for the single "person" class. To accelerate the computationally intensive process, training was performed on a computer equipped with an Nvidia RTX 4080 SUPER graphics card, leveraging GPU acceleration.
+Training was configured with the following parameters: an input image size of 1280x1280 pixels, and training duration of 600 iterations, or epochs, with early stopping patience of 200 epochs, after which training will be terminated if no model improvement is observed. The process was optimized for the single "person" class. To accelerate the computationally intensive process, training was performed on a computer equipped with an NVIDIA RTX 4080 SUPER graphics card, leveraging GPU acceleration.
 
-As is standard in training machine learning models, the annotated images were divided into three portions for each camera view: training, validation, and test sets. The training set comprises the majority of the data, in this case 80\%, and is directly used to train the model. The validation set is used to evaluate the model's performance on unseen data during each iteration, testing the model's ability to generalize its learning. The final portion of the dataset, the test set, is reserved for final evaluation of the model's performance after training is complete. The test set is not used during training or validation, ensuring that the model's performance is assessed on completely unseen data.
+As is standard in training machine learning models, the annotated images were divided into three portions for each camera view: training, validation, and test sets. The training set comprises the majority of the data, in this case 80\%, and is directly used to train the model. The validation set is used to evaluate the model's performance on unseen data during each iteration, testing the model's ability to generalize its learning. The final portion of the dataset, the test set, is reserved for final evaluation of the model's performance after training is complete. The test set is not used during training or validation, ensuring that the model's performance is assessed on completely unseen data. These results are presented in Section \ref{sec:technical-performance}
 
 This fine-tuning stage produced specialized model weights adapted to the unique visual characteristics of each camera view at the festival, which were then used for the subsequent inference stage.
 
 \subsubsection{Inference and Tracking}
-Following the training phase, the inference stage employs the specialized YOLOv8 models to detect heads within the recorded video footage, which are then tracked across frames using an object tracking algorithm. This combined inference and tracking pipeline generates the foundational data required for subsequent spatial mapping and metric extraction. The process begins by loading the fine-tuned model specific to the camera view being analyzed. Input videos are processed in parallel, analyzing each frame individually to identify and track individuals present. Videos are processed at a rate of 15 frames per second (FPS), which is half the recorded frame rate of 30 FPS. This frame rate was selected to balance processing speed and accuracy, as experimentation showed that tracking performance was not significantly affected by halving the frame rate. In theory, this provides a 2x speedup in processing time.
+Following the training phase, the inference stage employs the specialized YOLOv8 models to detect heads within the recorded video footage, which are then tracked across frames using an object tracking algorithm. This combined inference and tracking pipeline generates the foundational data required for subsequent spatial mapping and metric extraction. The process begins by loading the fine-tuned model specific to the camera view being analyzed, after which input videos are processed in parallel, analyzing each frame individually to identify and track individuals present. Videos are processed at a rate of 15 frames per second (FPS), which is half the recorded frame rate of 30 FPS. This frame rate was selected to balance processing speed and accuracy, as experimentation showed that tracking performance was not significantly affected by halving the frame rate. In theory, this provides a 2x speedup in processing time.
 
 Each frame is resized to a 1280x1280 pixel resolution, as defined during training, before running inference. This prepared frame is then passed to the fitted YOLOv8 model, which outputs bounding boxes around predicted heads and assigns confidence scores to these detections. These predictions are filtered; detections falling below a predefined confidence threshold are discarded (40\%), and Non-Maximum Suppression (NMS) is applied to resolve significant overlaps between bounding boxes, preserving only the most confident prediction.
 
@@ -211,18 +215,18 @@ The resulting bounding boxes and confidence scores are subsequently passed as in
 
 The final output for each frame is a list containing the bounding box coordinates, the assigned tracking ID, and the detection confidence score for every tracked individual. This data serves as input for the spatial mapping system described in the following section.
 
-\subsection{Spatial mapping and GIS}
+\subsection{Spatial Mapping}
 \label{sec:spatial_mapping}
 
-While the computer vision model (Section \ref{sec:cv_model}) outputs the locations of individuals in terms of pixel coordinates within the video frame, these coordinates alone are insufficient for thorough analysis of crowd dynamics. In order to derive area-based metrics such as crowd density (people per square meter), movement speeds and distances, it is necessary to translate these pixel positions into real-world geographic coordinates. Spatial mapping has this purpose, providing the planar transformation between the camera's perspective and the geographic context of the festival. This mapping also enables visualization of individual positions, from multiple cameras, onto a single overhead map, significantly enhancing contextual understanding, compared to that which is achievable through video footage alone.
+While the computer vision model (Section \ref{sec:cv_model}) outputs the locations of individuals in terms of pixel coordinates within the video frame, these coordinates alone are insufficient for thorough analysis of crowd dynamics. In order to derive area-based metrics such as crowd density (people per square meter), it is necessary to translate these pixel positions into real-world geographic coordinates. Spatial mapping serves this purpose, providing the planar transformation between the camera's perspective and the geographic context of the festival. This mapping also enables visualization of individual positions, from multiple cameras, onto a single overhead map, significantly enhancing contextual understanding, compared to that which is achievable through video footage alone.
 
 The technique employed for this spatial mapping is \textit{homography}: a transformation that maps points from one plane to another. In this context, it establishes a mathematical translation between the pixel coordinates in the 2D camera image plane and the corresponding real-world coordinates on the ground plane \cite{homography}. This allows any detected pixel coordinate within a defined area to be projected onto its actual geographic location.
 
-Performing the homography calculation requires two sets of corresponding points: one set in the camera's pixel coordinates and another in real-world coordinates. The latter is obtained from Roskilde Festival's internal Geographic Information System (GIS) tooling, which provides precise GPS coordinates of all infrastructure on the festival grounds. Selecting corresponding points was achieved by identifying distinct, stationary landmarks visible in the video frame, such as corners of structures or fences, and marking their position in pixel coordinates. These landmarks were then located in the GIS utility, where their GPS coordinates were recorded. Given a minimum of four distinct pairs of corresponding points, the homography transformation can be computed -- in this case, utilizing the OpenCV Python library \cite{opencv}. This resulting transformation is stored in a configuration file associated with that camera deployment. This manual process was performed once for each camera deployment, and the resulting homography matrices were used for all subsequent video footage captured by that camera. See Figure \ref{fig:homography_mapping} for an illustration of the results of this mapping process.
+Performing the homography calculation requires two sets of corresponding points: one set in the camera's pixel coordinates and another in real-world coordinates. The latter is obtained from Roskilde Festival's internal Geographic Information System (GIS) tooling, which provides precise GPS coordinates of all infrastructure on the festival grounds. Selecting corresponding points was achieved by identifying distinct, stationary landmarks visible in the video frame, such as corners of structures or fences, and marking their position in pixel coordinates. These landmarks were then located in the GIS utility, where their GPS coordinates were recorded. Given a minimum of four distinct pairs of corresponding points, the homography transformation can be computed -- in this case, utilizing the OpenCV Python library \cite{opencv}. This resulting transformation is stored in a configuration file associated with that camera deployment. This manual process was performed once for each camera deployment, and the resulting homography matrices were used for all subsequent video footage captured by that camera. See Figure \ref{fig:homography_mapping} for an illustration of this mapping process.
 
 Note a slight limitation of homography in this context; homography assumes that the mapping occurs between two planar surfaces. While the surfaces in the camera and map are treated as planar, the Earth's surface is curved. For the relatively small geographic areas covered by individual camera views, the ground surface can be reasonably approximated as flat. The error introduced by this assumption is considered negligible for the purposes of crowd analysis at this scale.
 
-\begin{figure}[htb!]
+\begin{figure}[tbp!]
   \begin{subfigure}{0.46\textwidth}
     \centering
     \includegraphics[width=\textwidth]{Pictures/Figures/homography_cam.png}
@@ -239,7 +243,7 @@ Note a slight limitation of homography in this context; homography assumes that 
 \end{figure}
 
 
-\subsection{Metric extraction}
+\subsection{Metric Extraction}
 \label{sec:metric_extraction}
 
 Following the spatial mapping process (Section \ref{sec:spatial_mapping}), which translates tracked individuals' pixel coordinates into real-world geographic coordinates, the metric extraction system processes this positional data to derive quantitative insights into crowd dynamics. This stage is the crucial step transforming raw data into the key metrics utilized by crowd safety professionals. The primary metrics extracted, as defined in Section \ref{sec:key-metrics}, include ingress/egress counts, flow rates, cumulative counts, crowd density, and movement patterns.
@@ -248,25 +252,31 @@ Following the spatial mapping process (Section \ref{sec:spatial_mapping}), which
 
 To measure the flow of people into and out of specific areas, lines are drawn across each camera view. These lines correspond to the entrances/exits covered by the cameras (as detailed in Section \ref{sec:data_collection}, Figures \ref{fig:eos_cameras} and \ref{fig:arena_cameras}). The system follows the trajectory of each tracked individual (identified by a unique ID from the tracking algorithm, Section \ref{sec:cv_model}). When a trajectory crosses the virtual line, the system registers it as either an ingress or egress event based on the direction of crossing.
 
-These individual crossing events are then aggregated over specific time intervals. Intervals of 1 minute, 15 minutes, and 1 hour were identified as most useful by Roskilde Festival (Appendix \ref{appendix:rf-feb-25}). This aggregation allows the calculation of the ingress/egress flow rate, representing the number of people entering/exiting the area per time unit. The net flow rate is calculated as the difference between ingress and egress flow rates, indicating the rate of change in the number of people within the area.
+These individual crossing events are then aggregated over specific time intervals. Intervals of 1 minute, 15 minutes, and 1 hour were identified as most useful by Roskilde Festival (Appendix \ref{appendix:rf-feb-25}). This aggregation allows the calculation of the ingress/egress flow rates, representing the number of people entering/exiting the area per time unit. The net flow rate is calculated as the difference between ingress and egress flow rates, indicating the rate of change in the number of people within the area.
 
-Furthermore, a cumulative count provides a running total of the net number of people within the monitored area over time, calculated by aggregating ingress/egress over time. This cumulative count is particularly useful for understanding the overall occupancy of the area. These flow metrics can be calculated for individual entrances or cameras, or they can be aggregated to provide a total flow for a larger area such as an entire stage. The system also identifies and records maximum ingress and egress flow rates observed during specific periods, like during a concert. This data is essential for understanding peak loads, capacity planning, and validating entrance width calculations.
+Furthermore, a cumulative count provides a running total of the net number of people within the monitored area over time, calculated by aggregating ingress/egress over time. This cumulative count is particularly useful for understanding the overall occupancy of the area. These flow metrics can be calculated for individual entrances or cameras, or they can be aggregated to provide a total flow for a larger area such as an entire stage. The system also identifies and records maximum ingress and egress flow rates observed during specific periods, such as before, during and after a given concert.
 
 \subsubsection{Crowd Density Calculation}
-Crowd density, measured in people per square meter (people/m²), is another critical metric for assessing safety and comfort. To calculate density, the monitored area is divided into a grid of 3x3 meter cells. At discrete time intervals, the system counts the number of tracked individuals whose mapped geographic coordinates (Section \ref{sec:spatial_mapping}) fall within each grid cell. The density for that cell or zone is then calculated by dividing this count by the known area of the cell or zone.
+Crowd density, measured in people per square meter (people/m²), is another critical metric for assessing safety and comfort. To calculate density, the monitored area is divided into a grid of 3x3 meter cells. At discrete time intervals, the system counts the number of tracked individuals whose mapped geographic coordinates (Section \ref{sec:spatial_mapping}) fall within each grid cell. The density for that cell or zone is then calculated by dividing this count by the known area of the cell or zone. The resulting values are subsequently grouped and categorized into the Levels of Service model used by Roskilde Festival (Figure \ref{fig:fruin}).
 
 \subsubsection{Movement Patterns}
 
-Beyond counts and density calculations, understanding how crowds move is crucial. By analyzing the sequence of time-stamped geographic coordinates, or trajectories, associated with each unique tracking ID, the system can visualize movement patterns. This involves plotting the paths taken by individuals over time, represented as gradient lines on the map.
-
-Analyzing these patterns can reveal dominant flow directions, identifying the primary paths people take when moving between locations. It can also aid in detecting cross-flow, areas where different streams of people intersect. Additionally, this analysis helps understand origin-destination patterns, showing where people come from when approaching an area, such as which pathway they used, and where they head afterwards.
-
+Compared to the metrics described above, movement patterns are a more qualitative metric. Utilizing the positional data from the spatial mapping process in conjunction with the unique tracking IDs, the system can visualize the movements of individuals over time. This was achieved by searching all previous points given a specific timestamp, and finding other instances of the same tracking ID. In order to ensure the quality of the visualization, only individuals that were tracked over a distance of 5 meters were included. This threshold was selected as the purpose of this visualization is to illustrate the origin-destination patterns of individuals, meaning that only individuals in motion should be included.
 
 \subsection{Interface/frontend}
 \label{sec:frontend}
 
+\begin{figure}[hpbt!]
+  \centering
+  \includegraphics[width=\textwidth]{Pictures/Figures/er_diagram.png}
+  \caption{ER diagram of the database structure. The diagram illustrates the relationships between the various entities in the database.}
+  \label{fig:er_diagram}
+\end{figure}
+
+
 The interface/frontend is the final component of the system, and is the only component visible to the end-users. It is therefore designed to condense the complexity of the sub-systems described in the previous sections into an accessible and user-friendly interface. The application employs a modern web development stack: namely, React, Next.js, TypeScript, and Tailwind CSS.
 
-Data storage and retrieval is managed through a PostgreSQL database, accessed via the Prisma Object-Relational Mapper (ORM). The database contains predefined information, including camera configurations, processed count data, and timestamped geographic point data. Additionally, the database stores user login information, as well as user-generated labels/notes for specific time intervals and cameras.
+Data storage and retrieval is managed through a PostgreSQL database, accessed via the Prisma Object-Relational Mapper (ORM). The database contains predefined information, including camera configurations and coordinates of the virtual lines required for ingress/egress calculation, as well as processed count data and timestamped geographic point data. Additionally, the database stores user login information, as well as user-generated labels/notes for specific time intervals and cameras. Figure \ref{fig:er_diagram} illustrates the database structure as an Entity-Relationship (ER) diagram, showcasing the relationships between the various entities, or tables, in the database.
 
 The entire frontend application is deployed and hosted using Vercel. See full overview of the frontend application in Section \ref{sec:frontend-showcase}.
+

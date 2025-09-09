@@ -24,6 +24,31 @@
   \renewcommand{\arraystretch}{1.0}
 \end{table}
 
+\section{Crowdhat performance}
+\label{appendix:crowdhat}
+
+\begin{table}[htb!]
+  \centering
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{0.9\textwidth}{@{} ll >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+    \toprule
+    Stage                                   & Camera         & Precision (\%) & Recall (\%)    & F1-Score (\%) \\
+    \midrule
+    \multirow{2}{*}{Eos}                    & CAM2           & 41.91          & 76.26          & 54.10         \\
+                                            & CAM4           & 31.02          & 76.26          & 44.10         \\
+    \midrule
+    \multirow{3}{*}{Arena}                  & CAM1           & 16.86          & 63.71          & 26.66         \\
+                                            & CAM2           & 56.30          & 78.07          & 65.42         \\
+                                            & CAM3           & 12.38          & 77.02          & 21.33         \\
+    \midrule \midrule
+    \multicolumn{2}{@{}l}{\textbf{Average}} & \textbf{31.69} & \textbf{74.26} & \textbf{43.32}                 \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Performance metrics of the Crowdhat model across different camera deployments at Roskilde Festival.}
+  \label{tab:crowdhat_performance}
+  \renewcommand{\arraystretch}{1.0}
+\end{table}
+
 \section{Roskilde Festival meeting notes}
 \label{appendix:rf-meeting-notes}
 
